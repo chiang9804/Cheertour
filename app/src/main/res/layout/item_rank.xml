@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp"
+    android:paddingRight="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/relativeLayout">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/image"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/logo"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="01"
+            android:id="@+id/rank"
+            android:background="@drawable/rank"
+            android:textStyle="bold"
+            android:typeface="monospace"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="40dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/image_type"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignBottom="@+id/image"
+            android:src="@drawable/scene"
+            android:layout_alignTop="@+id/textView_name"
+            android:scaleType="center"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="趣玩推薦地點"
+            android:id="@+id/textView_name"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            android:layout_alignParentBottom="false"
+            android:layout_toRightOf="@+id/image_type"
+            android:layout_toEndOf="@+id/image_type"
+            android:layout_alignBottom="@+id/image" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/relativeLayout2"
+        android:background="@color/light_primary" >
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/share"
+            android:clickable="true"
+            android:background="@drawable/card_share"
+            android:scaleType="centerInside"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:padding="5dp"
+            android:layout_marginRight="10dp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/like"
+            android:background="@drawable/card_favorite"
+            android:cropToPadding="false"
+            android:baselineAlignBottom="false"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/share"
+            android:layout_toStartOf="@+id/share"
+            android:layout_marginRight="10dp" />
+    </RelativeLayout>
+</LinearLayout>

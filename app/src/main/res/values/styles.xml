@@ -1,0 +1,49 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/dark_primary</item>
+        <item name="android:icon">@color/text_icons</item>
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textColorSecondary">@color/secondary_text</item>
+        <item name="android:divider">@color/divider</item>
+    </style>
+
+    <style name="EditTextViewCheertourTheme" parent="android:Widget.EditText">
+        <item name="android:editTextStyle">@drawable/cheertourtheme_edit_text_holo_light</item>
+        <item name="android:background">@drawable/cheertourtheme_textfield_activated_holo_light</item>
+    </style>
+
+    <style name="MyTheme" parent="@android:style/Theme.Dialog">
+        <!--<item name="android:alertDialogStyle">@style/CustomAlertDialogStyle</item>-->
+        <item name="android:textColorSecondary">@color/text_icons</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:textColor">@color/text_icons</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:colorBackground">#ffffff</item>// change background color
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:backgroundDimEnabled">true</item>
+
+    </style>
+
+    <!--<style name="CustomAlertDialogStyle">-->
+
+        <!--<item name="android:bottomDark">@color/primary_material_dark</item>-->
+        <!--<item name="android:bottomMedium">@color/primary_material_dark</item>-->
+        <!--<item name="android:centerBright">@color/primary_material_dark</item>-->
+        <!--<item name="android:centerDark">@color/primary_material_dark</item>-->
+        <!--<item name="android:centerMedium">@color/primary_material_dark</item>-->
+        <!--<item name="android:fullBright">@color/primary_material_dark</item>-->
+        <!--<item name="android:fullDark">@color/primary_material_dark</item>-->
+        <!--<item name="android:topBright">@color/primary_material_dark</item>-->
+        <!--<item name="android:topDark">@color/primary_material_dark</item>-->
+    <!--</style>-->
+
+</resources>

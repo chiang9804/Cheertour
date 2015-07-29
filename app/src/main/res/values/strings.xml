@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Cheertour</string>
+
+    <string name="do_not_login"><u>OR DO NOT LOGIN</u></string>
+
+    <string name="title_section1">趣玩推薦</string>
+    <string name="title_section2">旅遊地圖</string>
+    <string name="title_section3">排行地圖</string>
+    <string name="title_section4">朋友地圖</string>
+    <string name="title_section5">我的最愛</string>
+    <string name="title_section6">設定</string>
+    <string name="title_section7">關於趣玩</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_demo_username">趣玩使用者</string>
+    <string name="navigation_drawer_demo_userid">cheertour.instagram</string>
+
+    <string name="login_dialog_continue">CONTINUE</string>
+    <string name="login_dialog_title">Login with Instagram</string>
+    <string name="login_dialog_username">User name</string>
+    <string name="login_dialog_password">Password</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
+
+
+</resources>

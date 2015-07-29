@@ -1,0 +1,52 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".NavigationDrawerFragment"
+    android:background="@color/light_primary"
+    android:alpha="0.6">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/nav_drawer_coverphoto"
+        android:gravity="center_vertical|center_horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_cheertour"
+            android:id="@+id/ND_imageView"
+            android:layout_centerHorizontal="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/navigation_drawer_demo_username"
+            android:id="@+id/ND_fullname"
+            android:layout_below="@+id/ND_imageView"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/accent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/navigation_drawer_demo_userid"
+            android:id="@+id/ND_username"
+            android:layout_below="@+id/ND_fullname"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/accent" />
+    </RelativeLayout>
+
+    <ListView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/ND_listView"
+    android:choiceMode="singleChoice"
+    android:divider="@android:color/transparent"
+    android:dividerHeight="0dp" />
+
+</LinearLayout>

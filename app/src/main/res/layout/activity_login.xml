@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/bg_loading">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/image"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/login_logo"
+        android:padding="10dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:layout_below="@+id/image"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:cropToPadding="false"
+        android:background="@drawable/login_carousel_bg" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView3"
+        android:layout_alignBottom="@+id/viewFlipper"
+        android:layout_alignRight="@+id/viewFlipper" />
+
+    <ViewFlipper
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/viewFlipper"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/imageView2"
+        android:layout_alignBottom="@+id/imageView2" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="150dp"
+        android:clickable="true"
+        android:background="@drawable/login_with_instagram_selector"
+        android:onClick="loginButtonPressed" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/do_not_login"
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/cheertour_white"
+        android:padding="10dp"
+        android:background="@android:color/transparent"
+        android:clickable="true" />
+
+
+</RelativeLayout>
