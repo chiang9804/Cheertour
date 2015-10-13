@@ -51,6 +51,8 @@ public class MyAutoCompleteAdapter extends ArrayAdapter<RowItem> implements Adap
         RowItem rowItem = (RowItem) parent.getItemAtPosition(position);
         Toast.makeText(context, rowItem.toString(), Toast.LENGTH_SHORT).show();
         // TODO: Filter interaction and navigate to location info
+        // if is cheertour place, then use API getlocationdetail to load location info
+        // else if is Google place, then use API getlocation? centered by lat lng
     }
 
     private class ViewHolder {

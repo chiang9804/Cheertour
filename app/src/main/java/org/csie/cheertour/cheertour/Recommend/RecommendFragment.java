@@ -35,17 +35,20 @@ import static org.csie.cheertour.cheertour.ConstantVariables.setTimer;
 /**
  * Created by rose-pro on 2015/7/12.
  */
-public class RecommendFragment extends Fragment {
+public class RecommendFragment extends Fragment{
+
+
     private View rootView;
     private ArrayList<RecommendListItem> recommend_List;
     ProgressDialog progressDialog;
+    RecommendFragment recommendFragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if(container==null)
             return null;
         rootView = inflater.inflate(R.layout.fragment_recommend, container,false);
-
+        recommendFragment = this;
         setTimer("Recommend List download");
         new Thread(new Runnable() {
             @Override
@@ -74,14 +77,8 @@ public class RecommendFragment extends Fragment {
                                 progressDialog.dismiss();
                             }
 
-//                            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                                @Override
-//                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                                    Intent intent = new Intent(getActivity(), LocationInfoAcvtivity.class);
-//                                    Bundle b = new Bundle();
-//                                    b.put("id", recommend_List.get(position*2))
-//                                }
-//                            });
+//                            listView.setOnItemClickListener((MainFragmentActivity)getActivity());
+
                         }
                     });
                 } catch (IOException e) {

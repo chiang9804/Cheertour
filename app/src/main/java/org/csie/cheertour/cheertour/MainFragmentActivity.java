@@ -14,6 +14,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AutoCompleteTextView;
 
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+
 import org.csie.cheertour.cheertour.Drawer.NavigationDrawerFragment;
 import org.csie.cheertour.cheertour.Favorite.FavaoriteFragment;
 import org.csie.cheertour.cheertour.Login.LoginActivity;
@@ -98,6 +103,22 @@ public class MainFragmentActivity extends ActionBarActivity
         }
 //        Log.d(TAG_MP,"Main Page: onCreate End");
         restoreActionBar();
+
+        // TODO: configure the Universal Image Loader
+        // This configuration tuning is custom. You can tune every option, you may tune some of them,
+        // or you can create default configuration by
+        //  ImageLoaderConfiguration.createDefault(this);
+        // method.
+        ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(getApplicationContext());
+        config.threadPriority(Thread.NORM_PRIORITY - 2);
+        config.denyCacheImageMultipleSizesInMemory();
+        config.diskCacheFileNameGenerator(new Md5FileNameGenerator());
+        config.diskCacheSize(50 * 1024 * 1024); // 50 MiB
+        config.tasksProcessingOrder(QueueProcessingType.LIFO);
+        config.writeDebugLogs(); // Remove for release app
+
+        // Initialize ImageLoader with configuration.
+        ImageLoader.getInstance().init(config.build());
     }
 
     private void loadUserData(){
@@ -258,7 +279,5 @@ public class MainFragmentActivity extends ActionBarActivity
 
         return super.onOptionsItemSelected(item);
     }
-
-
 
 }

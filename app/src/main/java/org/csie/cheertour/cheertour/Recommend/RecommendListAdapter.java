@@ -2,9 +2,12 @@ package org.csie.cheertour.cheertour.Recommend;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +18,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
+
+import org.csie.cheertour.cheertour.Location.LocationInfoAcvtivity;
 import org.csie.cheertour.cheertour.R;
 
 import java.io.InputStream;
@@ -29,10 +37,22 @@ import static org.csie.cheertour.cheertour.ConstantVariables.TAG_RD;
 public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
     Context context;
     private ArrayList<RecommendListItem> recommendList;
+    DisplayImageOptions options;
     public RecommendListAdapter(Context context, ArrayList<RecommendListItem> recommendList) {
         super(context, 0);
         this.context = context;
         this.recommendList = recommendList;
+        options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.drawable.logo) //TODO: loading logo
+                .showImageForEmptyUri(R.drawable.logo)
+                .showImageOnFail(R.drawable.login_logo)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .considerExifParams(true)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .displayer(new RoundedBitmapDisplayer(20))
+                .build();
+
     }
 
     public void addItem(ArrayList<RecommendListItem> items){
@@ -70,6 +90,8 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
         TextView rank1;
         ImageButton like1;
         ImageButton share1;
+        CardView cardView1;
+        long locationId1;
 
         ImageView imageView2;
         TextView locationName2;
@@ -77,6 +99,8 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
         TextView rank2;
         ImageButton like2;
         ImageButton share2;
+        CardView cardView2;
+        long locationId2;
     }
 
 
@@ -96,7 +120,7 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
+        final ViewHolder holder;
         LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 
         // TODO: image cache
@@ -104,30 +128,35 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
 
         if (position == 0) { // use large item card
             RecommendListItem item = getItem(position);
-            Log.d(TAG_RD, "item:"+item.toString());
-            if(convertView == null || convertView.findViewById(R.id.imageView2)!=null){
-//            if(convertView == null){
+            Log.d(TAG_RD, "item:" + item.toString());
+            if(convertView == null){
                 convertView = mInflater.inflate(R.layout.item_card_recommend_large, parent, false);
                 holder = new ViewHolder();
                 holder.imageView1 = (ImageView) convertView.findViewById(R.id.image);
+                holder.imageView1.setImageResource(R.drawable.logo);
+                holder.imageView1.setTag("not download");
+
                 holder.locationName1 = (TextView) convertView.findViewById(R.id.textView);
                 holder.locationDescription1 = (TextView) convertView.findViewById(R.id.textView2);
                 holder.rank1 = (TextView) convertView.findViewById(R.id.textView3);
                 holder.like1 = (ImageButton) convertView.findViewById(R.id.imageButton2);
                 holder.share1 = (ImageButton) convertView.findViewById(R.id.imageButton);
+                holder.cardView1 = (CardView) convertView.findViewById(R.id.card_view);
                 convertView.setTag(holder);
 
-//                CardView cardView = (CardView) convertView.findViewById(R.id.card_view);
+//                holder.cardView1 = (CardView) convertView.findViewById(R.id.card_view);
 //                Log.d(TAG_RD,"Cardview size:"+cardView.getLayoutParams().width+","+cardView.getLayoutParams().height);
 //                cardView.setLayoutParams(new CardView.LayoutParams(cardView.getLayoutParams().width, cardView.getLayoutParams().width));
 //                cardView.requestLayout();
+
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
 
             // put item to view
+
             holder.imageView1.setImageResource(R.drawable.logo);
-            new LoadImage(holder.imageView1).execute(item.getImg_url());
+            ImageLoader.getInstance().displayImage(item.getImg_url(), holder.imageView1, options);
             holder.locationName1.setText(item.getLocation_name());
             holder.locationDescription1.setText(item.getLocation_description());
             holder.rank1.setText(item.getRank());
@@ -136,8 +165,20 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
             } else {
                 holder.like1.setBackgroundResource(R.drawable.card_favorite);
             }
+            holder.locationId1 = item.getLocation_id();
 
-            // TODO: holder.share onClickListener
+            holder.cardView1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, LocationInfoAcvtivity.class);
+                    Bundle b = new Bundle();
+                    b.putLong("id", holder.locationId1);
+                    intent.putExtras(b);
+                    context.startActivity(intent);
+                }
+            });
+
+
         } else {
             RecommendListItem item = getItem(position*2-1);
             RecommendListItem item2 = getItem(position*2);
@@ -154,6 +195,7 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
                 holder.rank1 = (TextView) convertView.findViewById(R.id.textView3);
                 holder.like1 = (ImageButton) convertView.findViewById(R.id.imageButton2);
                 holder.share1 = (ImageButton) convertView.findViewById(R.id.imageButton);
+                holder.cardView1 = (CardView) convertView.findViewById(R.id.card_view);
 
                 holder.imageView2 = (ImageView) convertView.findViewById(R.id.imageView2);
                 holder.locationName2 = (TextView) convertView.findViewById(R.id.textView4);
@@ -161,6 +203,7 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
                 holder.rank2 = (TextView) convertView.findViewById(R.id.textView6);
                 holder.like2 = (ImageButton) convertView.findViewById(R.id.imageButton4);
                 holder.share2 = (ImageButton) convertView.findViewById(R.id.imageButton3);
+                holder.cardView2 = (CardView) convertView.findViewById(R.id.card_view2);
 
                 convertView.setTag(holder);
 
@@ -180,7 +223,8 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
 
             // put item to view
             holder.imageView1.setImageResource(R.drawable.logo);
-            new LoadImage(holder.imageView1).execute(item.getImg_url());
+//            new LoadImage(holder.imageView1).execute(item.getImg_url());
+            ImageLoader.getInstance().displayImage(item.getImg_url(), holder.imageView1, options);
             holder.locationName1.setText(item.getLocation_name());
             holder.locationDescription1.setText(item.getLocation_description());
             holder.rank1.setText(item.getRank());
@@ -189,11 +233,24 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
             } else {
                 holder.like1.setBackgroundResource(R.drawable.card_favorite);
             }
+            holder.locationId1 = item.getLocation_id();
+
+            holder.cardView1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, LocationInfoAcvtivity.class);
+                    Bundle b = new Bundle();
+                    b.putLong("id", holder.locationId1);
+                    intent.putExtras(b);
+                    context.startActivity(intent);
+                }
+            });
 
 
             // put item2 to view
             holder.imageView2.setImageResource(R.drawable.logo);
-            new LoadImage(holder.imageView2).execute(item2.getImg_url());
+//            new LoadImage(holder.imageView2).execute(item2.getImg_url());
+            ImageLoader.getInstance().displayImage(item2.getImg_url(), holder.imageView2, options);
             holder.locationName2.setText(item2.getLocation_name());
             holder.locationDescription2.setText(item2.getLocation_description());
             holder.rank2.setText(item2.getRank());
@@ -202,6 +259,18 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
             } else {
                 holder.like2.setBackgroundResource(R.drawable.card_favorite);
             }
+            holder.locationId2 = item2.getLocation_id();
+
+            holder.cardView2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, LocationInfoAcvtivity.class);
+                    Bundle b = new Bundle();
+                    b.putLong("id", holder.locationId2);
+                    intent.putExtras(b);
+                    context.startActivity(intent);
+                }
+            });
 
         }
         return convertView;
@@ -215,6 +284,7 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
 
     private class LoadImage extends AsyncTask<String, String, Bitmap> {
         ImageView img=null;
+        String url;
         public LoadImage(ImageView img){
             this.img=img;
         }
@@ -226,7 +296,9 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
         protected Bitmap doInBackground(String... args) {
             Bitmap bitmap=null;
             try {
-                bitmap = BitmapFactory.decodeStream((InputStream) new URL(args[0]).getContent());
+                url = args[0];
+                Log.d(TAG_RD, "download img:"+url);
+                bitmap = BitmapFactory.decodeStream((InputStream) new URL(url).getContent());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -235,6 +307,7 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
         protected void onPostExecute(Bitmap image) {
             if(image != null){
                 img.setImageBitmap(image);
+                img.setTag(image);
             }
         }
     }

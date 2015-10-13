@@ -13,6 +13,14 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <!-- Android Universal Image Loader
+    https://github.com/nostra13/Android-Universal-Image-Loader
+    -->
+    <!-- Include following permission if you load images from Internet -->
+    <!--<uses-permission android:name="android.permission.INTERNET" />-->
+    <!-- Include following permission if you want to cache images on SD card -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -41,8 +49,18 @@
                 android:value="org.csie.cheertour.cheertour.MainFragmentActivity" />
 
         </activity>
-        <activity android:name=".Location.LocationInfoAcvtivity"></activity>
-        <activity android:name=".Location.LocationInfoFriendsActivity"></activity>
+        <activity android:name=".Location.LocationInfoAcvtivity"
+            android:parentActivityName=".MainFragmentActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.csie.cheertour.cheertour.MainFragmentActivity" />
+        </activity>
+        <activity android:name=".Location.LocationInfoFriendsActivity"
+            android:parentActivityName=".Location.LocationInfoAcvtivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.csie.cheertour.cheertour.Location.LocationInfoAcvtivity" />
+        </activity>
         <activity android:name=".Location.LocationInfoGalleryActivity"></activity>
         <activity android:name=".Location.LocationInfoImageActivity"></activity>
     </application>
