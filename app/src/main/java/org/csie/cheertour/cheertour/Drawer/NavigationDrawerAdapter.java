@@ -35,8 +35,16 @@ public class NavigationDrawerAdapter extends ArrayAdapter<NavigationDrawerItem>{
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         NavigationDrawerItem navigationDrawerItem = getItem(position);
-
         LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+
+        if (navigationDrawerItem.getText().equals("Divider")){
+            if(convertView == null){
+                convertView = mInflater.inflate(R.layout.item_navigation_drawer_divider, null);
+            }
+            convertView.setClickable(false);
+            return convertView;
+        }
+
         if(convertView == null){
             convertView = mInflater.inflate(resource, null);
             holder = new ViewHolder();
@@ -61,5 +69,19 @@ public class NavigationDrawerAdapter extends ArrayAdapter<NavigationDrawerItem>{
     @Override
     public NavigationDrawerItem getItem(int index) {
         return navigationDrawerItems[index];
+    }
+
+    @Override
+    public boolean areAllItemsEnabled() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled(int position) { // set Divider unable to click
+        if(position == 1 || position == 5){
+            return false;
+        } else {
+            return super.isEnabled(position);
+        }
     }
 }

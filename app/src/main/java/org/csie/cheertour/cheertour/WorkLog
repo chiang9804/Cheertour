@@ -2,8 +2,17 @@
 Add Universal Image Loader to LocationInfoActivity, RecommendList
 Configure ImageLoader @ MainFragmentActivity
 
+**** 11/11
+Add divider for navigation drawer
+set divider in NavigationDrawerAdapter, but the divider still clickable?
+
+**** 11/27
+Add Toolbar to locationInfoActivity
+Change ActionbarActivity to AppcompatActivity
+RecommendList Big Card Temporary fixed, enforcing not recycling
 
 
+**** FIXME
 
-**** Bug need fixed
-RecommendList Big Card
+
+**** TODO
