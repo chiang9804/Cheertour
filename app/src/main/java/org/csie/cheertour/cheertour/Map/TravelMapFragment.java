@@ -1,10 +1,8 @@
 package org.csie.cheertour.cheertour.Map;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -20,10 +18,12 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.maps.android.clustering.ClusterItem;
 import com.google.maps.android.ui.IconGenerator;
 
+import org.csie.cheertour.cheertour.Location.LocationInfoAcvtivity;
 import org.csie.cheertour.cheertour.R;
+
+import java.util.HashMap;
 
 
 /**
@@ -34,6 +34,7 @@ public class TravelMapFragment extends Fragment{
     private MapView mapView;
     private GoogleMap map;
     private UiSettings uiSettings;
+    private HashMap <Marker, MapMarkerData> markerDataMap;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if(container==null)
@@ -50,23 +51,22 @@ public class TravelMapFragment extends Fragment{
             e.printStackTrace();
         }
 
-        map = mapView.getMap();
+        setMap(mapView);
 
-        // Show Zoom control
-        uiSettings = map.getUiSettings();
-        uiSettings.setZoomControlsEnabled(true);
+        markerDataMap = new HashMap<Marker, MapMarkerData>();
 
         // Add a marker and set map center to its position
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(25.02, 121.38), 15));
 
         IconGenerator iconGenerator = new IconGenerator( this.getActivity() );
         Bitmap iconBitmap = iconGenerator.makeIcon("Cheertour");
-        map.addMarker(new MarkerOptions()
-                .icon(BitmapDescriptorFactory.fromBitmap(iconBitmap))
-                .position(new LatLng(25.02, 121.38))
-                .title("visit cheertour.info now")
+        Marker testMarker = map.addMarker(new MarkerOptions()
+                        .icon(BitmapDescriptorFactory.fromBitmap(iconBitmap))
+                        .position(new LatLng(25.02, 121.38))
+                        .title("visit cheertour.info now")
         );
-        // map.setOnMarkerClickListener();
+        MapMarkerData testMarkerData = new MapMarkerData(123, "Cheertour", "other");
+        markerDataMap.put(testMarker, testMarkerData);
 
         return rootView;
     }
@@ -89,5 +89,30 @@ public class TravelMapFragment extends Fragment{
     @Override
     public void onDestroy() {
         super.onDestroy();
+    }
+
+    private void setMap(MapView mapView){
+        map = mapView.getMap();
+
+        // Show Zoom control
+        uiSettings = map.getUiSettings();
+        uiSettings.setZoomControlsEnabled(true);
+
+        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                // Get corresponding markerData
+                MapMarkerData data = markerDataMap.get(marker);
+                marker.setSnippet( data.getName() );
+                // Open the location info View
+                Context context = getActivity();
+                Intent intent = new Intent(context, LocationInfoAcvtivity.class);
+                Bundle b = new Bundle();
+                b.putLong("id", data.getID() );
+                intent.putExtras(b);
+                context.startActivity(intent);
+                return false;
+            }
+        });
     }
 }
