@@ -58,15 +58,7 @@ public class TravelMapFragment extends Fragment{
         // Add a marker and set map center to its position
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(25.02, 121.38), 15));
 
-        IconGenerator iconGenerator = new IconGenerator( this.getActivity() );
-        Bitmap iconBitmap = iconGenerator.makeIcon("Cheertour");
-        Marker testMarker = map.addMarker(new MarkerOptions()
-                        .icon(BitmapDescriptorFactory.fromBitmap(iconBitmap))
-                        .position(new LatLng(25.02, 121.38))
-                        .title("visit cheertour.info now")
-        );
-        MapMarkerData testMarkerData = new MapMarkerData(123, "Cheertour", "other");
-        markerDataMap.put(testMarker, testMarkerData);
+        addMarker(123, "Cheertour", "other", 25.02, 121.38);
 
         return rootView;
     }
@@ -103,16 +95,31 @@ public class TravelMapFragment extends Fragment{
             public boolean onMarkerClick(Marker marker) {
                 // Get corresponding markerData
                 MapMarkerData data = markerDataMap.get(marker);
-                marker.setSnippet( data.getName() );
+                marker.setSnippet(data.getName());
                 // Open the location info View
                 Context context = getActivity();
                 Intent intent = new Intent(context, LocationInfoAcvtivity.class);
                 Bundle b = new Bundle();
-                b.putLong("id", data.getID() );
+                b.putLong("id", data.getID());
                 intent.putExtras(b);
                 context.startActivity(intent);
                 return false;
             }
         });
+    }
+    private Marker addMarker(int id, String name, String category, LatLng latlng){
+        IconGenerator iconGenerator = new IconGenerator( this.getActivity() );
+        Bitmap iconBitmap = iconGenerator.makeIcon(name);
+        Marker marker = map.addMarker(new MarkerOptions()
+                        .icon(BitmapDescriptorFactory.fromBitmap(iconBitmap))
+                        .position(latlng)
+        );
+        MapMarkerData markerData = new MapMarkerData(id, name, category, latlng);
+        markerDataMap.put(marker, markerData);
+
+        return marker;
+    }
+    private Marker addMarker(int id, String name, String category, double lat, double lng){
+        return addMarker(id, name, category, new LatLng(lat, lng) );
     }
 }
