@@ -1,6 +1,5 @@
 package org.csie.cheertour.cheertour.Location;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -8,6 +7,8 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -40,7 +42,7 @@ import static org.csie.cheertour.cheertour.ConstantVariables.TAG_IF;
 /**
  * Created by rose-pro on 2015/7/15.
  */
-public class LocationInfoAcvtivity extends Activity {
+public class LocationInfoAcvtivity extends AppCompatActivity {
     // use intent send ID
 //    http://cheertour.info/db/photo/getlocationdetail?ID=161229&mode=WITH_FACE&number=100&rank=0
     long location_id;
@@ -84,24 +86,28 @@ public class LocationInfoAcvtivity extends Activity {
                                 json.getString("image_url"), json.getString("image_instagram_url"));
                         posts.add(item);
                     }
-                    // TODO: show first post
-                    ImageView first_image = (ImageView) locationInfoAcvtivity.findViewById(R.id.image);
-                    DisplayImageOptions options = new DisplayImageOptions.Builder()
-                            .showImageOnLoading(R.drawable.logo) //TODO: loading logo
-                            .showImageForEmptyUri(R.drawable.logo)
-                            .showImageOnFail(R.drawable.login_logo)
-                            .cacheInMemory(true)
-                            .cacheOnDisk(true)
-                            .considerExifParams(true)
-                            .bitmapConfig(Bitmap.Config.RGB_565)
-                            .displayer(new RoundedBitmapDisplayer(20))
-                            .build();
-                    ImageLoader.getInstance().displayImage(posts.get(0).getImage_url(), first_image, options);
+
+
                     // TODO: load near location
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            // add UI
+                            // Add First Image
+                            // TODO: show first post
+                            ImageView first_image = (ImageView) locationInfoAcvtivity.findViewById(R.id.image);
+                            DisplayImageOptions options = new DisplayImageOptions.Builder()
+                                    .showImageOnLoading(R.drawable.logo) //TODO: loading logo
+                                    .showImageForEmptyUri(R.drawable.logo)
+                                    .showImageOnFail(R.drawable.login_logo)
+                                    .cacheInMemory(true)
+                                    .cacheOnDisk(true)
+                                    .considerExifParams(true)
+                                    .bitmapConfig(Bitmap.Config.RGB_565)
+                                    .displayer(new RoundedBitmapDisplayer(20))
+                                    .build();
+                            Log.d(TAG_IF, "First Image: "+posts.get(0).getImage_url());
+                            ImageLoader.getInstance().displayImage(posts.get(0).getImage_url(), first_image, options);
+
                             // TODO: ADD UI Universal Image Loader gallery
                             ViewPager pager = (ViewPager) locationInfoAcvtivity.findViewById(R.id.pager);
                             pager.setAdapter(new ImagePagerAdapter(locationInfoAcvtivity, posts));
@@ -131,6 +137,11 @@ public class LocationInfoAcvtivity extends Activity {
             progressDialog.setIndeterminate(true);
             progressDialog.show();
         }
+
+        // 2015/11/27 add actionbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

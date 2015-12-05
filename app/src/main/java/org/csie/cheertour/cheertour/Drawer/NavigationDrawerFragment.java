@@ -12,8 +12,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -112,10 +112,12 @@ public class NavigationDrawerFragment extends Fragment {
         //TODO: change icon
         NavigationDrawerItem[] navigationDrawerItems = new NavigationDrawerItem[]{
                 new NavigationDrawerItem(R.drawable.nav_drawer_icon_1, getString(R.string.title_section1)),
+                new NavigationDrawerItem(0, "Divider"),
                 new NavigationDrawerItem(R.drawable.nav_drawer_icon_2, getString(R.string.title_section2)),
                 new NavigationDrawerItem(R.drawable.nav_drawer_icon_3, getString(R.string.title_section3)),
 //                new NavigationDrawerItem(R.drawable.ic_logo_48, getString(R.string.title_section4)),
                 new NavigationDrawerItem(R.drawable.nav_drawer_icon_5, getString(R.string.title_section5)),
+                new NavigationDrawerItem(0, "Divider"),
                 new NavigationDrawerItem(R.drawable.nav_drawer_icon_6, getString(R.string.title_section6)),
                 new NavigationDrawerItem(R.drawable.nav_drawer_icon_7, getString(R.string.title_section7))
         };
@@ -155,6 +157,8 @@ public class NavigationDrawerFragment extends Fragment {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
+
+
 
         // ActionBarDrawerToggle ties together the the proper interactions
         // between the navigation drawer and the action bar app icon.
@@ -284,7 +288,8 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     private ActionBar getActionBar() {
-        return ((ActionBarActivity) getActivity()).getSupportActionBar();
+//        return ((ActionBarActivity) getActivity()).getSupportActionBar();
+        return ((AppCompatActivity) getActivity()).getSupportActionBar();
     }
 
     /**

@@ -1,169 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg_app"
-    android:fillViewport="false"
-    android:id="@+id/scrollView">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.Toolbar
 
-    <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/toolbar"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:background="@color/primary"
+        android:textColor="@color/text_icons" />
+    <ScrollView
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_app"
+        android:fillViewport="false"
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/scrollView">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <ImageView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:id="@+id/image"
-                android:src="@drawable/test_photo"
-                android:background="@android:color/transparent"
-                android:scaleType="centerCrop" />
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/linearLayout_location_info"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:background="@color/light_primary"
-                android:alpha="0.9"
-                android:weightSum="3">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="趣玩地點名稱 Cheertour location name"
-                    android:id="@+id/textView_location_name"
-                    android:layout_alignParentLeft="true"
-                    android:textColor="@color/primary_text"
-                    android:layout_below="@+id/image"
-                    android:layout_gravity="center_horizontal"
-                    android:typeface="normal"
-                    android:singleLine="true"
-                    android:layout_weight="1"
-                    android:paddingBottom="5dp"
-                    android:paddingLeft="20dp"
-                    android:paddingTop="25dp"
-                    android:paddingRight="20dp" />
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/linear_layout_transport_means"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center_vertical"
-                    android:weightSum="6"
-                    android:layout_weight="1"
-                    android:paddingLeft="20dp"
-                    android:paddingTop="5dp"
-                    android:paddingRight="20dp"
-                    android:paddingBottom="5dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:id="@+id/imageView_vehicle"
-                        android:src="@drawable/traffic_car"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="10 min"
-                        android:id="@+id/textView_vehicle"
-                        android:textColor="@color/secondary_text"
-                        android:layout_weight="1" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:id="@+id/imageView_bus"
-                        android:src="@drawable/traffic_bus"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="30 min"
-                        android:id="@+id/textView_bus"
-                        android:textColor="@color/secondary_text"
-                        android:layout_weight="1" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:id="@+id/imageView_walk"
-                        android:src="@drawable/traffic_walk"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="1 hr 10 min"
-                        android:id="@+id/textView_walk"
-                        android:textColor="@color/secondary_text"
-                        android:layout_weight="1" />
-                </LinearLayout>
+                android:layout_height="match_parent">
 
                 <ImageView
                     android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:id="@+id/image"
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerCrop" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/linearLayout_location_info"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/light_primary"
+                    android:alpha="0.9"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="趣玩地點名稱 Cheertour location name"
+                        android:id="@+id/textView_location_name"
+                        android:layout_alignParentLeft="true"
+                        android:textColor="@color/primary_text"
+                        android:layout_below="@+id/image"
+                        android:layout_gravity="center_horizontal"
+                        android:typeface="normal"
+                        android:singleLine="true"
+                        android:layout_weight="1"
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="25dp"
+                        android:paddingRight="20dp" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/linear_layout_transport_means"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_vertical"
+                        android:weightSum="6"
+                        android:layout_weight="1"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="20dp"
+                        android:paddingBottom="5dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/imageView_vehicle"
+                            android:src="@drawable/traffic_car"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="10 min"
+                            android:id="@+id/textView_vehicle"
+                            android:textColor="@color/secondary_text"
+                            android:layout_weight="1" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/imageView_bus"
+                            android:src="@drawable/traffic_bus"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="30 min"
+                            android:id="@+id/textView_bus"
+                            android:textColor="@color/secondary_text"
+                            android:layout_weight="1" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/imageView_walk"
+                            android:src="@drawable/traffic_walk"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="1 hr 10 min"
+                            android:id="@+id/textView_walk"
+                            android:textColor="@color/secondary_text"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView_login"
+                        android:src="@drawable/login_ig_to_see_friend"
+                        android:scaleType="centerCrop"
+                        android:cropToPadding="false"
+                        android:layout_gravity="center_horizontal"
+                        android:contentDescription="loginToSeeFriends"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="20dp" />
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageView_login"
-                    android:src="@drawable/login_ig_to_see_friend"
-                    android:scaleType="centerCrop"
-                    android:cropToPadding="false"
-                    android:layout_gravity="center_horizontal"
-                    android:contentDescription="loginToSeeFriends"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="20dp" />
+                    android:id="@+id/imageButton"
+                    android:background="@drawable/btn_favorite_normal"
+                    android:layout_alignWithParentIfMissing="false"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="210dp"
+                    android:layout_marginRight="15dp" />
 
-            </LinearLayout>
+            </RelativeLayout>
 
-            <ImageButton
+            <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="120sp" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageButton"
-                android:background="@drawable/btn_favorite_normal"
-                android:layout_alignWithParentIfMissing="false"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="210dp"
-                android:layout_marginRight="15dp" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/location_info_nearby"
+                android:id="@+id/textView_nearby"
+                android:textColor="@color/primary_text"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" />
 
-        </RelativeLayout>
-
-        <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/pager"
-            android:layout_width="match_parent"
-            android:layout_height="120sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/location_info_nearby"
-            android:id="@+id/textView_nearby"
-            android:textColor="@color/primary_text"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp" />
-
-        <GridView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/gridView" />
+            <GridView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/gridView" />
 
 
-    </LinearLayout>
-</ScrollView>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
+
+
+

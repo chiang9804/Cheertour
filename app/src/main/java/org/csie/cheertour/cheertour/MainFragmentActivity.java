@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -37,7 +37,7 @@ import static org.csie.cheertour.cheertour.ConstantVariables.TAG_LP;
 import static org.csie.cheertour.cheertour.ConstantVariables.TAG_MP;
 
 
-public class MainFragmentActivity extends ActionBarActivity
+public class MainFragmentActivity extends AppCompatActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
@@ -149,11 +149,13 @@ public class MainFragmentActivity extends ActionBarActivity
     }
 
     private final int DRAWER_ITEM_RECOMMEND = 0;
-    private final int DRAWER_ITEM_TRAVEL_MAP = 1;
-    private final int DRAWER_ITEM_RANK_MAP = 2;
-    private final int DRAWER_ITEM_FAVORITE = 3;
-    private final int DRAWER_ITEM_SETTING = 4;
-    private final int DRAWER_ITEM_ABOUT = 5;
+    private final int DRAWER_ITEM_DIVIDER1 = 1;
+    private final int DRAWER_ITEM_TRAVEL_MAP = 2;
+    private final int DRAWER_ITEM_RANK_MAP = 3;
+    private final int DRAWER_ITEM_FAVORITE = 4;
+    private final int DRAWER_ITEM_DIVIDER2 = 5;
+    private final int DRAWER_ITEM_SETTING = 6;
+    private final int DRAWER_ITEM_ABOUT = 7;
     private Fragment recommendFragment, travelMapFragment, rankMapFragment, favoriteFragment, settingFragment, aboutFragment;
     @Override
     public void onNavigationDrawerItemSelected(int position) {
@@ -215,23 +217,25 @@ public class MainFragmentActivity extends ActionBarActivity
     public void onSectionAttached(int number) {
 //        Log.d(TAG_ND, "on Section Attached:"+number);
         switch (number) {
-            case 0:
+            case DRAWER_ITEM_RECOMMEND:
                 mTitle = getString(R.string.title_section1);
                 break;
-            case 1:
+            case DRAWER_ITEM_TRAVEL_MAP:
                 mTitle = getString(R.string.title_section2);
                 break;
-            case 2:
+            case DRAWER_ITEM_RANK_MAP:
                 mTitle = getString(R.string.title_section3);
                 break;
-            case 3:
+            case DRAWER_ITEM_FAVORITE:
                 mTitle = getString(R.string.title_section5);
                 break;
-            case 4:
+            case DRAWER_ITEM_SETTING:
                 mTitle = getString(R.string.title_section6);
                 break;
-            case 5:
+            case DRAWER_ITEM_ABOUT:
                 mTitle = getString(R.string.title_section7);
+                break;
+            default:
                 break;
         }
     }

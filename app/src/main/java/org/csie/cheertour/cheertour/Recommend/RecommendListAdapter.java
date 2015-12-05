@@ -129,7 +129,9 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
         if (position == 0) { // use large item card
             RecommendListItem item = getItem(position);
             Log.d(TAG_RD, "item:" + item.toString());
-            if(convertView == null){
+//            if(convertView == null){
+            ///FIXME Because it's not recycling
+                Log.d(TAG_RD, "Large Card: Add convertView"+position);
                 convertView = mInflater.inflate(R.layout.item_card_recommend_large, parent, false);
                 holder = new ViewHolder();
                 holder.imageView1 = (ImageView) convertView.findViewById(R.id.image);
@@ -149,10 +151,12 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
 //                cardView.setLayoutParams(new CardView.LayoutParams(cardView.getLayoutParams().width, cardView.getLayoutParams().width));
 //                cardView.requestLayout();
 
-            } else {
-                holder = (ViewHolder) convertView.getTag();
-            }
+//            } else {
+//                Log.d(TAG_RD, "Large Card: converView not null");
+//                holder = (ViewHolder) convertView.getTag();
+//            }
 
+            Log.d(TAG_RD, "Large CardView:"+item.getLocation_name());
             // put item to view
 
             holder.imageView1.setImageResource(R.drawable.logo);
@@ -273,6 +277,8 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
             });
 
         }
+
+        Log.d(TAG_RD, "convertView: "+convertView.getResources());
         return convertView;
     }
 

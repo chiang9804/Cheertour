@@ -6,7 +6,7 @@
     android:orientation="vertical"
     tools:context=".NavigationDrawerFragment"
     android:background="@color/light_primary"
-    android:alpha="0.6">
+    android:alpha="1.0">
 
     <RelativeLayout
         android:layout_width="match_parent"
