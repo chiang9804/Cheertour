@@ -54,7 +54,7 @@ public class RecommendFragment extends Fragment{
             @Override
             public void run() {
                 try {
-                    String url = GET_LOCATION_URL+"?"
+                    String url = GET_LOCATION_URL
                             +"up="+GL_UP+"&down="+GL_DOWN+"&left="+GL_LEFT+"&right="+GL_RIGHT
                             +"&number="+MAX_RETURN_NUMBER+"&rank="+GL_RANK;
                     Log.d(TAG_RD, "download url:" + url);
