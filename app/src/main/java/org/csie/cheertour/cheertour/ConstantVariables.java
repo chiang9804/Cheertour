@@ -15,6 +15,7 @@ public class ConstantVariables {
     public final static String TAG_SCH = "TagSearch";
     public final static String TAG_IF = "TagLocationInfo";
     public final static String TAG_RD = "TagRecommend";
+    public static final String TAG_MAP = "TagMap";
 
     public final static String PREFS_NAME = "PreferenceFile";
 
