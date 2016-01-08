@@ -11,8 +11,23 @@ Add Toolbar to locationInfoActivity
 Change ActionbarActivity to AppcompatActivity
 RecommendList Big Card Temporary fixed, enforcing not recycling
 
+**** 12/15
+Login bug Fix, use package https://github.com/thiagolocatelli/android-instagram-oauth
+GetAccessToken code is useless
 
 **** FIXME
 
 
 **** TODO
+Check login status before press favorite
+my Favorite
+
+recommendation list length
+navigation list on press
+rank list cardview
+
+Logout
+
+
+
+

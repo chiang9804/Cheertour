@@ -19,14 +19,20 @@ public class ConstantVariables {
 
     public final static String PREFS_NAME = "PreferenceFile";
 
+
+//    https://www.instagram.com/oauth/authorize/?client_id=e0971b21f6164e5681146b051834250d&redirect_uri=http://c.cheertour.info/main/getcode&response_type=code
     // Instagram API registration numbers
-    public final static String host_name = "http://cheertour.info";
-    public final static String client_id = "b467030942bc45a196e55215a315fede";
-    public final static String client_secret = "d9b510ccd3874001ac690e137c65dacf";
-    public static final String AUTHURL = "https://api.instagram.com/oauth/authorize/";
+//    public final static String host_name = "http://cheertour.info"; old key
+    public final static String host_name = "http://c.cheertour.info";
+//    public final static String client_id = "b467030942bc45a196e55215a315fede"; old key
+    public final static String client_id = "e0971b21f6164e5681146b051834250d";
+//    public final static String client_secret = "d9b510ccd3874001ac690e137c65dacf"; old key
+    public final static String client_secret = "f305036aa838405289b19999ca2e73a5";
+//    public static final String AUTHURL = "https://api.instagram.com/oauth/authorize/";
     public static final String TOKENURL = "https://api.instagram.com/oauth/access_token";
     public static String CALLBACKURL = host_name + "/main/getcode";
-    public static String authURLString = AUTHURL + "?client_id=" + client_id + "&redirect_uri=" + CALLBACKURL + "&response_type=code&display=touch&scope=likes+comments+relationships";
+//    public static String authURLString = AUTHURL + "?client_id=" + client_id + "&redirect_uri=" + CALLBACKURL + "&response_type=code&display=touch&scope=likes+comments+relationships";
+//    public static String authURLString = AUTHURL + "?client_id=" + client_id + "&redirect_uri=" + CALLBACKURL + "&response_type=code";
     public final static int RESULT_LOGIN = 90;
 
     // Search autocomplete
