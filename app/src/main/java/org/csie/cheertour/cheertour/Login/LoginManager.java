@@ -2,6 +2,7 @@ package org.csie.cheertour.cheertour.Login;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import org.csie.cheertour.cheertour.ConstantVariables;
 
@@ -21,6 +22,7 @@ public class LoginManager {
 
     public static boolean checkInstagramLoginStatus(Context context) {
         SharedPreferences pref = context.getSharedPreferences(ConstantVariables.PREFS_NAME, context.MODE_PRIVATE);
+        Log.d("Tag", "check instagram login:"+pref.getBoolean("instagram_login", true));
         if (pref.getBoolean("instagram_login", true)) {
             return true;
         }

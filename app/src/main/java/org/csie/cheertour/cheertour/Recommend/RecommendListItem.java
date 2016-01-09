@@ -10,6 +10,7 @@ public class RecommendListItem {
     private String rank; // 打卡數
     private Boolean isFavorite;
 
+
     public long getLocation_id() {
         return location_id;
     }

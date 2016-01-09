@@ -1,6 +1,11 @@
 package org.csie.cheertour.cheertour;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
+
+import org.csie.cheertour.cheertour.Location.LocationInfoAcvtivity;
 
 import static java.lang.System.currentTimeMillis;
 
@@ -20,18 +25,18 @@ public class ConstantVariables {
     public final static String PREFS_NAME = "PreferenceFile";
 
 
-//    https://www.instagram.com/oauth/authorize/?client_id=e0971b21f6164e5681146b051834250d&redirect_uri=http://c.cheertour.info/main/getcode&response_type=code
+    //    https://www.instagram.com/oauth/authorize/?client_id=e0971b21f6164e5681146b051834250d&redirect_uri=http://c.cheertour.info/main/getcode&response_type=code
     // Instagram API registration numbers
 //    public final static String host_name = "http://cheertour.info"; old key
     public final static String host_name = "http://c.cheertour.info";
-//    public final static String client_id = "b467030942bc45a196e55215a315fede"; old key
+    //    public final static String client_id = "b467030942bc45a196e55215a315fede"; old key
     public final static String client_id = "e0971b21f6164e5681146b051834250d";
-//    public final static String client_secret = "d9b510ccd3874001ac690e137c65dacf"; old key
+    //    public final static String client_secret = "d9b510ccd3874001ac690e137c65dacf"; old key
     public final static String client_secret = "f305036aa838405289b19999ca2e73a5";
-//    public static final String AUTHURL = "https://api.instagram.com/oauth/authorize/";
+    //    public static final String AUTHURL = "https://api.instagram.com/oauth/authorize/";
     public static final String TOKENURL = "https://api.instagram.com/oauth/access_token";
     public static String CALLBACKURL = host_name + "/main/getcode";
-//    public static String authURLString = AUTHURL + "?client_id=" + client_id + "&redirect_uri=" + CALLBACKURL + "&response_type=code&display=touch&scope=likes+comments+relationships";
+    //    public static String authURLString = AUTHURL + "?client_id=" + client_id + "&redirect_uri=" + CALLBACKURL + "&response_type=code&display=touch&scope=likes+comments+relationships";
 //    public static String authURLString = AUTHURL + "?client_id=" + client_id + "&redirect_uri=" + CALLBACKURL + "&response_type=code";
     public final static int RESULT_LOGIN = 90;
 
@@ -70,25 +75,39 @@ public class ConstantVariables {
      */
     public static final String GET_LOCATION_DETAIL_URL = "http://cheertour.info/db/photo/getlocationdetail?";
 
+
+    /*
+
+    return object['data'] 裡面是 favorite list
+    e.g. // url: "/db/photo/getfavorite?user_id="+user_ID+"&number=1000"
+     */
+    public static final String GET_FAVORITE_URL = "http://cheertour.info/db/photo/getfavorite?";
+
+
     // Timer
     /*
      用來算執行時間的
      */
-    private static long startTime=0;
+    private static long startTime = 0;
     private static String startPoint = "";
-    public static void setTimer(String message){
+
+    public static void setTimer(String message) {
         startTime = currentTimeMillis();
         startPoint = message;
     }
-    public static long getTimeDifference(){
+
+    public static long getTimeDifference() {
         return currentTimeMillis() - startTime;
     }
-    public static void printTimeDifferenceToLog(String tag, String message){
+
+    public static void printTimeDifferenceToLog(String tag, String message) {
         Log.d(tag, startPoint + " to " + message + ": " + getTimeDifference() + " ms");
     }
-    public static void resetTimer(){
+
+    public static void resetTimer() {
         startTime = currentTimeMillis();
     }
+
 
 
 }

@@ -2,6 +2,7 @@ package org.csie.cheertour.cheertour.Location;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -244,6 +245,16 @@ public class LocationInfoAcvtivity extends AppCompatActivity {
         public boolean isViewFromObject(View view, Object object) {
             return view.equals(object);
         }
+    }
+
+    public static void openLocationInfo(Context context, long location_id, String location_name) {
+        Intent intent = new Intent(context, LocationInfoAcvtivity.class);
+        Bundle b = new Bundle();
+        b.putLong("id",location_id);
+        b.putString("name", location_name);
+        intent.putExtras(b);
+        context.startActivity(intent);
+
     }
 
 

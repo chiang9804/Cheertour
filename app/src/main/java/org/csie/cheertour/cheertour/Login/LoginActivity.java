@@ -153,15 +153,6 @@ public class LoginActivity extends Activity implements GestureDetector.OnGesture
 
     }
 
-//    Dialog dialog;
-//    ProgressDialog progressDialog;
-//    AlertDialog.Builder builder;
-//    AlertDialog dialog;
-
-    SharedPreferences pref;
-
-    String request_token;
-
     public void loginButtonPressed(View view){
         Log.d(TAG_LG, "login button pressed");
 
@@ -171,6 +162,7 @@ public class LoginActivity extends Activity implements GestureDetector.OnGesture
             @Override
             public void onSuccess() {
                 Toast.makeText(getApplicationContext(), "登入成功，可以使用完整功能", Toast.LENGTH_SHORT).show();
+                SharedPreferences pref = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
                 SharedPreferences.Editor edit = pref.edit();
 
                 edit.putBoolean("login", true);

@@ -22,6 +22,7 @@ public class InstagramSession {
 	private static final String API_ID = "id";
 	private static final String API_NAME = "name";
 	private static final String API_ACCESS_TOKEN = "access_token";
+	private static final String API_PROFILE_URL = "profile_url";
 
 	public InstagramSession(Context context) {
 		sharedPref = context.getSharedPreferences(SHARED, Context.MODE_PRIVATE);
@@ -35,11 +36,12 @@ public class InstagramSession {
 	 * @param expiresIn
 	 * @param username
 	 */
-	public void storeAccessToken(String accessToken, String id, String username, String name) {
+	public void storeAccessToken(String accessToken, String id, String username, String name, String profile_url) {
 		editor.putString(API_ID, id);
 		editor.putString(API_NAME, name);
 		editor.putString(API_ACCESS_TOKEN, accessToken);
 		editor.putString(API_USERNAME, username);
+		editor.putString(API_PROFILE_URL, profile_url);
 		editor.commit();
 	}
 
@@ -56,6 +58,7 @@ public class InstagramSession {
 		editor.putString(API_NAME, null);
 		editor.putString(API_ACCESS_TOKEN, null);
 		editor.putString(API_USERNAME, null);
+		editor.putString(API_PROFILE_URL, null);
 		editor.commit();
 	}
 
@@ -93,4 +96,12 @@ public class InstagramSession {
 		return sharedPref.getString(API_ACCESS_TOKEN, null);
 	}
 
+	/**
+	 * Get profile picture
+	 *
+	 * @return profile picture url
+	 */
+	public String getProfileUrl() {
+		return sharedPref.getString(API_PROFILE_URL, null);
+	}
 }
