@@ -54,7 +54,7 @@ public class InstagramApp {
 	private static final String TOKEN_URL = "https://api.instagram.com/oauth/access_token";
 	private static final String API_URL = "https://api.instagram.com/v1";
 
-	private static final String TAG = "InstagramAPI";
+	private static final String TAG = "TagInstagramAPI";
 
 	public InstagramApp(Context context, String clientId, String clientSecret,
 			String callbackUrl) {
@@ -121,9 +121,12 @@ public class InstagramApp {
 					
 					String id = jsonObj.getJSONObject("user").getString("id");
 					String user = jsonObj.getJSONObject("user").getString("username");
-					String name = jsonObj.getJSONObject("user").getString("full_name");					
+					String name = jsonObj.getJSONObject("user").getString("full_name");
+					String profile_url = jsonObj.getJSONObject("user").getString("profile_picture");
+
+					Log.i(TAG, "Got profile picture: " + profile_url);
 					
-					mSession.storeAccessToken(mAccessToken, id, user, name);
+					mSession.storeAccessToken(mAccessToken, id, user, name, profile_url);
 					
 				} catch (Exception ex) {
 					what = WHAT_ERROR;
@@ -244,6 +247,8 @@ public class InstagramApp {
 		return str;
 	}
 
+
+	// TODO call this method when logout
 	public void resetAccessToken() {
 		if (mAccessToken != null) {
 			mSession.resetAccessToken();

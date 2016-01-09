@@ -21,7 +21,9 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 import org.csie.cheertour.cheertour.Drawer.NavigationDrawerFragment;
 import org.csie.cheertour.cheertour.Favorite.FavaoriteFragment;
+import org.csie.cheertour.cheertour.Favorite.FavoriteListItem;
 import org.csie.cheertour.cheertour.Login.LoginActivity;
+import org.csie.cheertour.cheertour.Login.LoginManager;
 import org.csie.cheertour.cheertour.Map.TravelMapFragment;
 import org.csie.cheertour.cheertour.Rank.RankListItem;
 import org.csie.cheertour.cheertour.Rank.RankMapFragment;
@@ -30,6 +32,8 @@ import org.csie.cheertour.cheertour.Recommend.RecommendListItem;
 import org.csie.cheertour.cheertour.Search.MyAutoCompleteAdapter;
 
 import java.util.ArrayList;
+
+import br.com.dina.oauth.instagram.InstagramSession;
 
 import static org.csie.cheertour.cheertour.ConstantVariables.PREFS_NAME;
 import static org.csie.cheertour.cheertour.ConstantVariables.RESULT_LOGIN;
@@ -52,8 +56,9 @@ public class MainFragmentActivity extends AppCompatActivity
     public AutoCompleteTextView search_textView;
     Toolbar toolbar;
 
-    public ArrayList<RankListItem> search_results;
-    public ArrayList<RecommendListItem> recommendList;
+    public ArrayList<RankListItem> search_results = null;
+    public ArrayList<RecommendListItem> recommendList = null;
+    public ArrayList<FavoriteListItem> favoriteList = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +66,7 @@ public class MainFragmentActivity extends AppCompatActivity
 //        Log.d(TAG_MP,"Main Page: onCreate");
         // TODO: If first time, go to login page
         SharedPreferences pref = getSharedPreferences(PREFS_NAME, 0);
-        Log.d(TAG_MP,"First time:"+pref.getBoolean("my_first_time", true));
+        Log.d(TAG_MP, "First time:" + pref.getBoolean("my_first_time", true));
         if (pref.getBoolean("my_first_time", true)) {
             //the app is being launched for first time, do something
             Log.d(TAG_LP, "First time");
@@ -96,13 +101,7 @@ public class MainFragmentActivity extends AppCompatActivity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
-        // TODO: check login status
-        Log.d(TAG_MP,"login:"+pref.getBoolean("login", false));
-        if (pref.getBoolean("login", false)){ // if login not exist then return false
-            loadUserData();
-        }
-//        Log.d(TAG_MP,"Main Page: onCreate End");
-        restoreActionBar();
+
 
         // TODO: configure the Universal Image Loader
         // This configuration tuning is custom. You can tune every option, you may tune some of them,
@@ -119,15 +118,52 @@ public class MainFragmentActivity extends AppCompatActivity
 
         // Initialize ImageLoader with configuration.
         ImageLoader.getInstance().init(config.build());
+        Log.d(TAG_MP, "login:" + pref.getBoolean("login", false));
+        if (LoginManager.checkInstagramLoginStatus(this)){ // if login not exist then return false
+            loadUserData(); // userID is set
+            Log.d(TAG_MP, "user ID:" + userID);
+
+            // TODO get Favorite
+            // url: "/db/photo/getfavorite?user_id="+user_ID+"&number=1000"
+            getFavoriteList();
+        }
+
+        restoreActionBar();
     }
 
+    private void getFavoriteList(){
+
+    }
+
+    private void updateFavoriteList(){
+        // download new favorite list
+    }
+
+    private void updateFavorite(){
+        // update Favorite in recommendationList, rankList, mapList
+
+    }
+
+//    // TODO add String, add a constant variable of MAX length store
+//    private FavoriteListItem getRecommendListItemFromJSONObject(JSONObject json) throws JSONException {
+//        JSONArray imgArray = json.getJSONArray("image_url");
+//        String[] img_list = String
+//
+//        return new FavoriteListItem(
+//                json.getString("location_name"),
+//                json.getLong("location_id"),
+//                [imgArray.get(0), imgArray.get(1), imgArray.get(2)],
+//                json.getString("category")
+//        );
+//    }
+
+    String userID = null;
     private void loadUserData(){
-        SharedPreferences pref = getSharedPreferences(PREFS_NAME, 0);
-        String username = pref.getString("user_name", "username get failed");
-        String fullname = pref.getString("full_name", "fullname get failed");
-        String picString = pref.getString("user_pic", "user_pic get failed");
-        Log.d(TAG_MP,"Load user data:"+username+","+fullname);
-        mNavigationDrawerFragment.setUserData(fullname,username,picString);
+        InstagramSession instagramSession = new InstagramSession(this);
+        userID = instagramSession.getId();
+        mNavigationDrawerFragment.setUserData(instagramSession.getName()
+                ,instagramSession.getUsername()
+                ,instagramSession.getProfileUrl());
     }
 
     @Override

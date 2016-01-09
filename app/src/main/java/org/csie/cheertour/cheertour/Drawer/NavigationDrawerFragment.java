@@ -109,7 +109,7 @@ public class NavigationDrawerFragment extends Fragment {
                 selectItem(position);
             }
         });
-        //TODO: change icon
+
         NavigationDrawerItem[] navigationDrawerItems = new NavigationDrawerItem[]{
                 new NavigationDrawerItem(R.drawable.nav_drawer_icon_1, getString(R.string.title_section1)),
                 new NavigationDrawerItem(0, "Divider"),
@@ -127,6 +127,8 @@ public class NavigationDrawerFragment extends Fragment {
                 R.layout.item_navigation_drawer,
                 navigationDrawerItems));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
+
+
         return mLinearLayout;
     }
 

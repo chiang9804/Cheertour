@@ -64,8 +64,8 @@ public class RecommendFragment extends Fragment{
                     for (int i = 0; i < jsonArray.length(); ++i) {
                         recommend_List.add(getRecommendListItemFromJSONObject(jsonArray.getJSONObject(i)));
                     }
-
-                    ((MainFragmentActivity)getActivity()).recommendList = recommend_List;
+                    Log.d(TAG_RD, "recommend list parse finish, len:"+recommend_List.size());
+                    ((MainFragmentActivity) getActivity()).recommendList = recommend_List;
 
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
@@ -137,6 +137,7 @@ public class RecommendFragment extends Fragment{
                 json.getString("location_name"),
                 "趣玩地點推薦",
                 imgArray.getString(0),
+                // TODO change ranking calculation
                 json.getString("number_of_img"),
                 false,
                 json.getString("category"),
