@@ -109,10 +109,11 @@ public class ConstantVariables {
     }
 
 
-    public static void openLocationInfo(Context context, int location_id) {
+    public static void openLocationInfo(Context context, int location_id, String location_name) {
         Intent intent = new Intent(context, LocationInfoAcvtivity.class);
         Bundle b = new Bundle();
         b.putLong("id",location_id);
+        b.putString("name", location_name);
         intent.putExtras(b);
         context.startActivity(intent);
 
