@@ -108,8 +108,8 @@ public class ConstantVariables {
         startTime = currentTimeMillis();
     }
 
-    
-    void openLocationInfo(Context context, int location_id) {
+
+    public static void openLocationInfo(Context context, int location_id) {
         Intent intent = new Intent(context, LocationInfoAcvtivity.class);
         Bundle b = new Bundle();
         b.putLong("id",location_id);
