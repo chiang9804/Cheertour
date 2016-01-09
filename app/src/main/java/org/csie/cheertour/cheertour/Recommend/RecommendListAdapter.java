@@ -2,11 +2,9 @@ package org.csie.cheertour.cheertour.Recommend;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -174,20 +172,22 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
             holder.cardView1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, LocationInfoAcvtivity.class);
-                    Bundle b = new Bundle();
-                    b.putLong("id", holder.locationId1);
-                    intent.putExtras(b);
-                    context.startActivity(intent);
+//                    Intent intent = new Intent(context, LocationInfoAcvtivity.class);
+//                    Bundle b = new Bundle();
+//                    b.putLong("id", holder.locationId1);
+//                    intent.putExtras(b);
+//                    context.startActivity(intent);
+                    LocationInfoAcvtivity.openLocationInfo(context, holder.locationId1, holder.locationName1.getText().toString());
                 }
             });
+
 
 
         } else {
             RecommendListItem item = getItem(position*2-1);
             RecommendListItem item2 = getItem(position*2);
 
-            Log.d(TAG_RD, "item1:"+item.toString()+", item2:"+item2.toString());
+            Log.d(TAG_RD, "item1:" + item.toString() + ", item2:" + item2.toString());
 
             if(convertView == null || convertView.findViewById(R.id.imageView2)==null){
                 Log.d(TAG_RD,"recommend item type 1 rebuild convertView");
@@ -242,13 +242,15 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
             holder.cardView1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, LocationInfoAcvtivity.class);
-                    Bundle b = new Bundle();
-                    b.putLong("id", holder.locationId1);
-                    intent.putExtras(b);
-                    context.startActivity(intent);
+//                    Intent intent = new Intent(context, LocationInfoAcvtivity.class);
+//                    Bundle b = new Bundle();
+//                    b.putLong("id", holder.locationId1);
+//                    intent.putExtras(b);
+//                    context.startActivity(intent);
+                    LocationInfoAcvtivity.openLocationInfo(context, holder.locationId1, holder.locationName1.getText().toString());
                 }
             });
+
 
 
             // put item2 to view
@@ -268,11 +270,12 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
             holder.cardView2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, LocationInfoAcvtivity.class);
-                    Bundle b = new Bundle();
-                    b.putLong("id", holder.locationId2);
-                    intent.putExtras(b);
-                    context.startActivity(intent);
+//                    Intent intent = new Intent(context, LocationInfoAcvtivity.class);
+//                    Bundle b = new Bundle();
+//                    b.putLong("id", holder.locationId2);
+//                    intent.putExtras(b);
+//                    context.startActivity(intent);
+                    LocationInfoAcvtivity.openLocationInfo(context, holder.locationId2, holder.locationName2.getText().toString());
                 }
             });
 
