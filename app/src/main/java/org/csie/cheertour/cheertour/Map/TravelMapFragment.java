@@ -39,6 +39,7 @@ import java.util.HashMap;
 
 import static org.csie.cheertour.cheertour.ConstantVariables.GET_LOCATION_URL;
 import static org.csie.cheertour.cheertour.ConstantVariables.TAG_MAP;
+import static org.csie.cheertour.cheertour.Location.LocationInfoAcvtivity.openLocationInfo;
 
 
 /**
@@ -102,8 +103,9 @@ public class TravelMapFragment extends Fragment{
 
         // Set the center of the map to current position
         Activity activity = getActivity();
-        // Default position
+        // TODO: Decide a default position
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(25.02, 121.38), 15));
+        // TODO: Ask for GPS position
         SingleShotLocationProvider.requestSingleUpdate(activity,
                 new SingleShotLocationProvider.LocationCallback() {
                     @Override
@@ -113,7 +115,7 @@ public class TravelMapFragment extends Fragment{
                                         // new LatLng(location.latitude, location.longitude), 15)
                                         // johntsai (2015/12/22): It's weird that I need to exchange the
                                         // order of lat and lng
-                                        new LatLng(location.longitude, location.latitude), 15)
+                                        new LatLng(location.latitude, location.longitude), 15)
                         );
                     }
                 });
@@ -126,14 +128,8 @@ public class TravelMapFragment extends Fragment{
                 MapMarkerData data = markerDataMap.get(marker);
                 marker.setSnippet(data.getName());
                 // Open the location info View
-                Context context = getActivity();
-                Intent intent = new Intent(context, LocationInfoAcvtivity.class);
-                Bundle b = new Bundle();
-                b.putLong("id", data.getID());
-                intent.putExtras(b);
-                context.startActivity(intent);
+                LocationInfoAcvtivity.openLocationInfo(getActivity(), data.getID(), data.getName());
                 return false;
-                //TODO: Test it
             }
         });
         map.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
