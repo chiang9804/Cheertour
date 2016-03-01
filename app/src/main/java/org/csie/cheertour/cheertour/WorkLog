@@ -17,25 +17,14 @@ GetAccessToken code is useless
 Change Navigation Drawer profile
 
 **** FIXME
-
+Press the blank space of the navigation drawer
 
 **** TODO
 Search result
-
 Check login status before press favorite
-my Favorite
-
-rankList => search Result
-
-navigation list on press
 rank list cardview
-
 recommendation list length
-
-Logout
-
 locationInfo read bundle "name", display before download
-
 recommend list image resolution
 
 

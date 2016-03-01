@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -17,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -110,8 +108,8 @@ public class LocationInfoAcvtivity extends AppCompatActivity {
                             ImageLoader.getInstance().displayImage(posts.get(0).getImage_url(), first_image, options);
 
                             // TODO: ADD UI Universal Image Loader gallery
-                            ViewPager pager = (ViewPager) locationInfoAcvtivity.findViewById(R.id.pager);
-                            pager.setAdapter(new ImagePagerAdapter(locationInfoAcvtivity, posts));
+//                            ViewPager pager = (ViewPager) locationInfoAcvtivity.findViewById(R.id.pager);
+//                            pager.setAdapter(new ImagePagerAdapter(locationInfoAcvtivity, posts));
 
                             // TODO: ADD UI near locations
 

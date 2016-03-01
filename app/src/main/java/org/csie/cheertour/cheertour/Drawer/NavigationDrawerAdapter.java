@@ -2,6 +2,7 @@ package org.csie.cheertour.cheertour.Drawer;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.csie.cheertour.cheertour.ConstantVariables;
+import org.csie.cheertour.cheertour.Login.LoginManager;
+import org.csie.cheertour.cheertour.MainFragmentActivity;
 import org.csie.cheertour.cheertour.R;
 
 /**
@@ -33,11 +37,23 @@ public class NavigationDrawerAdapter extends ArrayAdapter<NavigationDrawerItem>{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        Log.d(ConstantVariables.TAG_ND, "NavigationDrawerAdapter getView position" + position);
         ViewHolder holder;
         NavigationDrawerItem navigationDrawerItem = getItem(position);
+        if(position == MainFragmentActivity.DRAWER_ITEM_SETTING) {
+            if (LoginManager.checkInstagramLoginStatus(getContext())) {
+                navigationDrawerItem = getItem(position);
+            } else {
+                navigationDrawerItem = getItem(position+1);
+
+            }
+            Log.d(ConstantVariables.TAG_ND, "NavigationDrawerAdapter getView for setting: " + navigationDrawerItem.getText());
+        }
+
+
         LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 
-        if (navigationDrawerItem.getText().equals("Divider")){
+        if (position == MainFragmentActivity.DRAWER_ITEM_DIVIDER2){
             if(convertView == null){
                 convertView = mInflater.inflate(R.layout.item_navigation_drawer_divider, null);
             }
@@ -63,7 +79,8 @@ public class NavigationDrawerAdapter extends ArrayAdapter<NavigationDrawerItem>{
 
     @Override
     public int getCount() {
-        return navigationDrawerItems.length;
+        // minus the "login/logout"
+        return navigationDrawerItems.length - 1;
     }
 
     @Override
@@ -79,10 +96,12 @@ public class NavigationDrawerAdapter extends ArrayAdapter<NavigationDrawerItem>{
     @Override
     public boolean isEnabled(int position) {
         // set Divider unable to click
-        if(position == 2){
+        if(position == MainFragmentActivity.DRAWER_ITEM_DIVIDER2){
             return false;
         } else {
             return super.isEnabled(position);
         }
     }
+
+
 }

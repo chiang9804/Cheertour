@@ -30,7 +30,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import org.csie.cheertour.cheertour.ConstantVariables;
-import org.csie.cheertour.cheertour.Login.LoginManager;
 import org.csie.cheertour.cheertour.R;
 
 import java.io.InputStream;
@@ -68,6 +67,7 @@ public class NavigationDrawerFragment extends Fragment {
     private LinearLayout mLinearLayout;
     private ListView mDrawerListView;
     private View mFragmentContainerView;
+    private NavigationDrawerAdapter mDrawerAdapter;
 
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
@@ -114,42 +114,42 @@ public class NavigationDrawerFragment extends Fragment {
             }
         });
 
-        NavigationDrawerItem[] navigationDrawerItems = null;
-
-        if(LoginManager.checkInstagramLoginStatus(getActivity().getApplicationContext())) {
-            navigationDrawerItems = new NavigationDrawerItem[]{
-                    new NavigationDrawerItem(R.drawable.nav_drawer_icon_1, getString(R.string.title_section1)),
+//        NavigationDrawerItem[] navigationDrawerItems = new NavigationDrawerItem[]{
+//                new NavigationDrawerItem(R.drawable.nav_drawer_icon_1, getString(R.string.title_section1)),
+////                new NavigationDrawerItem(0, "Divider"),
+//                new NavigationDrawerItem(R.drawable.nav_drawer_icon_2, getString(R.string.title_section2)),
+////                new NavigationDrawerItem(R.drawable.nav_drawer_icon_3, getString(R.string.title_section3)),
+////                new NavigationDrawerItem(R.drawable.ic_logo_48, getString(R.string.title_section4)),
+////                new NavigationDrawerItem(R.drawable.nav_drawer_icon_5, getString(R.string.title_section5)),
 //                new NavigationDrawerItem(0, "Divider"),
-                    new NavigationDrawerItem(R.drawable.nav_drawer_icon_2, getString(R.string.title_section2)),
-//                new NavigationDrawerItem(R.drawable.nav_drawer_icon_3, getString(R.string.title_section3)),
-//                new NavigationDrawerItem(R.drawable.ic_logo_48, getString(R.string.title_section4)),
-//                new NavigationDrawerItem(R.drawable.nav_drawer_icon_5, getString(R.string.title_section5)),
-                    new NavigationDrawerItem(0, "Divider"),
-                    new NavigationDrawerItem(R.drawable.nav_drawer_icon_6, getString(R.string.title_section6))
-//                new NavigationDrawerItem(R.drawable.nav_drawer_icon_7, getString(R.string.title_section7))
-            };
-        } else {
-            navigationDrawerItems = new NavigationDrawerItem[]{
-                    new NavigationDrawerItem(R.drawable.nav_drawer_icon_1, getString(R.string.title_section1)),
-//                new NavigationDrawerItem(0, "Divider"),
-                    new NavigationDrawerItem(R.drawable.nav_drawer_icon_2, getString(R.string.title_section2)),
-//                new NavigationDrawerItem(R.drawable.nav_drawer_icon_3, getString(R.string.title_section3)),
-//                new NavigationDrawerItem(R.drawable.ic_logo_48, getString(R.string.title_section4)),
-//                new NavigationDrawerItem(R.drawable.nav_drawer_icon_5, getString(R.string.title_section5)),
-                    new NavigationDrawerItem(0, "Divider"),
-                    new NavigationDrawerItem(R.drawable.nav_drawer_icon_6, getString(R.string.title_section6_2))
-//                new NavigationDrawerItem(R.drawable.nav_drawer_icon_7, getString(R.string.title_section7))
-            };
-        }
+//                LoginManager.checkInstagramLoginStatus(getActivity().getApplicationContext())?
+//                        new NavigationDrawerItem(R.drawable.nav_drawer_icon_6, getString(R.string.title_section6))
+//                        : new NavigationDrawerItem(R.drawable.nav_drawer_icon_6, getString(R.string.title_section6_2))
+////                new NavigationDrawerItem(R.drawable.nav_drawer_icon_7, getString(R.string.title_section7))
+//        };
+                NavigationDrawerItem[] navigationDrawerItems = new NavigationDrawerItem[]{
+                new NavigationDrawerItem(R.drawable.nav_drawer_icon_1, getString(R.string.title_section1)),
+                new NavigationDrawerItem(R.drawable.nav_drawer_icon_2, getString(R.string.title_section2)),
+                new NavigationDrawerItem(0, "Divider"),
+                new NavigationDrawerItem(R.drawable.nav_drawer_icon_6, getString(R.string.title_section6)),
+                new NavigationDrawerItem(R.drawable.nav_drawer_icon_6, getString(R.string.title_section6_2))
+        };
 
-        mDrawerListView.setAdapter(new NavigationDrawerAdapter(
+
+        mDrawerListView.setAdapter((mDrawerAdapter = new NavigationDrawerAdapter(
                 getActivity(),
                 R.layout.item_navigation_drawer,
-                navigationDrawerItems));
+                navigationDrawerItems)));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
 
 
         return mLinearLayout;
+    }
+
+    public void updateDrawer(){
+        mDrawerAdapter.notifyDataSetChanged();
+        Log.d(ConstantVariables.TAG_ND, "NavigationDrawerFragment: updateDrawer");
+//        mDrawerListView.invalidateViews();
     }
 
     public void setUserData(String fullname, String username, String urlProfilePic){
@@ -159,8 +159,8 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     public void setUserData(){
-        ((TextView) mLinearLayout.findViewById(R.id.ND_fullname)).setText("");
-        ((TextView) mLinearLayout.findViewById(R.id.ND_username)).setText("");
+        ((TextView) mLinearLayout.findViewById(R.id.ND_fullname)).setText(getString(R.string.navigation_drawer_demo_username));
+        ((TextView) mLinearLayout.findViewById(R.id.ND_username)).setText(getString(R.string.navigation_drawer_demo_userid));
         ((ImageView) mLinearLayout.findViewById(R.id.ND_imageView)).setImageDrawable(ContextCompat.getDrawable(getActivity().getApplicationContext(), R.drawable.ic_cheertour));
     }
 

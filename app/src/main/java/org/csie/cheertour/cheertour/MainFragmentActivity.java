@@ -198,13 +198,13 @@ public class MainFragmentActivity extends AppCompatActivity
 
     // If change anything here, go to NavigationDrawerAdapter: isEnabled
 
-    private final int DRAWER_ITEM_RECOMMEND = 0;
+    public static final int DRAWER_ITEM_RECOMMEND = 0;
 //    private final int DRAWER_ITEM_DIVIDER1 = 1;
-    private final int DRAWER_ITEM_TRAVEL_MAP = 1;
+    public static final int DRAWER_ITEM_TRAVEL_MAP = 1;
 //    private final int DRAWER_ITEM_RANK_MAP = 3;
 //    private final int DRAWER_ITEM_FAVORITE = 4;
-    private final int DRAWER_ITEM_DIVIDER2 =  2;
-    private final int DRAWER_ITEM_SETTING = 3;
+    public static final int DRAWER_ITEM_DIVIDER2 =  2;
+    public static final int DRAWER_ITEM_SETTING = 3;
 //    private final int DRAWER_ITEM_ABOUT = 7;
 
     private Fragment recommendFragment, travelMapFragment, rankMapFragment, favoriteFragment, settingFragment, aboutFragment;
@@ -252,9 +252,44 @@ public class MainFragmentActivity extends AppCompatActivity
 //                fragmentManager.beginTransaction()
 //                        .replace(R.id.container, settingFragment)
 //                        .commit();
-                    LoginManager.logout(getApplicationContext());
-                    // restore to default image
-                    mNavigationDrawerFragment.setUserData();
+                    if(LoginManager.checkInstagramLoginStatus(getApplicationContext())) {
+                        LoginManager.logout(getApplicationContext());
+                        mNavigationDrawerFragment.setUserData();
+                    } else {
+                        InstagramApp.OAuthAuthenticationListener listener = new InstagramApp.OAuthAuthenticationListener() {
+
+                            @Override
+                            public void onSuccess() {
+                                Toast.makeText(getApplicationContext(), "登入成功，可以使用完整功能", Toast.LENGTH_SHORT).show();
+                                SharedPreferences pref = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+                                SharedPreferences.Editor edit = pref.edit();
+
+                                edit.putBoolean("login", true);
+                                edit.putBoolean("my_first_time", false);
+                                edit.putBoolean("instagram_login", true);
+                                edit.commit();
+
+                                loadUserData();
+                                mNavigationDrawerFragment.updateDrawer();
+//                                runOnUiThread(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        mNavigationDrawerFragment.updateDrawer();
+//                                    }
+//                                });
+                            }
+
+                            @Override
+                            public void onFail(String error) {
+                                Toast.makeText(getApplicationContext(), "登入失敗，請稍候再試", Toast.LENGTH_SHORT).show();
+                                mNavigationDrawerFragment.updateDrawer();
+                            }
+                        };
+
+                        LoginManager.loginToInstagram(this, listener);
+                    }
+
+
                 break;
 //            case DRAWER_ITEM_ABOUT:
 //                if(aboutFragment == null)
@@ -355,14 +390,6 @@ public class MainFragmentActivity extends AppCompatActivity
                     edit.putBoolean("instagram_login", true);
                     edit.commit();
 
-//                Bundle conData = new Bundle();
-//                conData.putString("results", "login");
-//                Intent intent = new Intent();
-//                intent.putExtras(conData);
-//                setResult(RESULT_OK, intent);
-//                mActivity.finish();
-
-                    // TODO: reload the user information
                     loadUserData();
                 }
 
@@ -375,4 +402,8 @@ public class MainFragmentActivity extends AppCompatActivity
             LoginManager.loginToInstagram(this, listener);
         }
     }
+
+
+
+
 }
