@@ -18,11 +18,16 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import org.csie.cheertour.cheertour.Location.LocationInfoAcvtivity;
 import org.csie.cheertour.cheertour.R;
+import org.json.JSONArray;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
@@ -115,11 +120,37 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
 //    public int getViewTypeCount() {
 //        return 2;
 //    }
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final ViewHolder holder;
         LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        class ExceptionListener extends SimpleImageLoadingListener{
+
+            public ExceptionListener(RecommendListItem item){
+                this.item = item;
+            }
+
+            @Override
+            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                ((ImageView) view).setImageBitmap(loadedImage);
+            }
+
+            @Override
+            public void onLoadingFailed(String imageUri, View view, FailReason failReason){
+                Log.e(TAG_RD, imageUri + " Failed ");
+                try {
+                    String newUri = item.getImg_urls().getString(0);
+                    item.getImg_urls().remove(0);
+                    item.setImg_url(newUri);
+                    ImageLoader.getInstance().displayImage(newUri, (ImageView) view, this);
+                }catch (org.json.JSONException e){
+
+                    return;
+                }
+
+            }
+            private RecommendListItem item;
+        }
 
         // TODO: image cache
         Log.d(TAG_RD, "recommend get view:"+position);
@@ -146,7 +177,7 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
 
 //                holder.cardView1 = (CardView) convertView.findViewById(R.id.card_view);
 //                Log.d(TAG_RD,"Cardview size:"+cardView.getLayoutParams().width+","+cardView.getLayoutParams().height);
-//                cardView.setLayoutParams(new CardView.LayoutParams(cardView.getLayoutParams().width, cardView.getLayoutParams().width));
+//                cardView.setLayoutParams(new vCardView.LayoutParams(cardView.getLayoutParams().width, cardView.getLayoutParams().width));
 //                cardView.requestLayout();
 
 //            } else {
@@ -154,11 +185,13 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
 //                holder = (ViewHolder) convertView.getTag();
 //            }
 
-            Log.d(TAG_RD, "Large CardView:"+item.getLocation_name());
+            Log.d(TAG_RD, "Large CardView:" + item.getLocation_name());
             // put item to view
 
             holder.imageView1.setImageResource(R.drawable.logo);
-            ImageLoader.getInstance().displayImage(item.getImg_url(), holder.imageView1, options);
+            ExceptionListener exceptionListener = new ExceptionListener(item);
+            ImageLoader.getInstance().displayImage(item.getImg_url(), holder.imageView1, options, exceptionListener);
+
             holder.locationName1.setText(item.getLocation_name());
             holder.locationDescription1.setText(item.getLocation_description());
             holder.rank1.setText(item.getRank());
@@ -228,7 +261,9 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
             // put item to view
             holder.imageView1.setImageResource(R.drawable.logo);
 //            new LoadImage(holder.imageView1).execute(item.getImg_url());
-            ImageLoader.getInstance().displayImage(item.getImg_url(), holder.imageView1, options);
+            ExceptionListener exceptionListener = new ExceptionListener(item);
+            ImageLoader.getInstance().displayImage(item.getImg_url(), holder.imageView1, options, exceptionListener);
+
             holder.locationName1.setText(item.getLocation_name());
             holder.locationDescription1.setText(item.getLocation_description());
             holder.rank1.setText(item.getRank());
@@ -252,11 +287,14 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
             });
 
 
-
+            Log.d(TAG_RD, "item2 start");
             // put item2 to view
             holder.imageView2.setImageResource(R.drawable.logo);
 //            new LoadImage(holder.imageView2).execute(item2.getImg_url());
-            ImageLoader.getInstance().displayImage(item2.getImg_url(), holder.imageView2, options);
+
+            ExceptionListener exceptionListener2 = new ExceptionListener(item2);
+            ImageLoader.getInstance().displayImage(item2.getImg_url(), holder.imageView2, options, exceptionListener2);
+
             holder.locationName2.setText(item2.getLocation_name());
             holder.locationDescription2.setText(item2.getLocation_description());
             holder.rank2.setText(item2.getRank());

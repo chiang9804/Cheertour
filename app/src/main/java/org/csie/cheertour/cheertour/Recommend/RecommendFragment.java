@@ -133,10 +133,13 @@ public class RecommendFragment extends Fragment{
 
     private RecommendListItem getRecommendListItemFromJSONObject(JSONObject json) throws JSONException{
         JSONArray imgArray = json.getJSONArray("image_url");
+        String url = imgArray.getString(0);
+        imgArray.remove(0);
         return new RecommendListItem(
                 json.getString("location_name"),
                 "趣玩地點推薦",
-                imgArray.getString(0),
+                url,
+                imgArray,
                 // TODO change ranking calculation
                 json.getString("number_of_img"),
                 false,

@@ -30,6 +30,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import org.csie.cheertour.cheertour.ConstantVariables;
+import org.csie.cheertour.cheertour.Login.LoginManager;
 import org.csie.cheertour.cheertour.R;
 
 import java.io.InputStream;
@@ -113,17 +114,33 @@ public class NavigationDrawerFragment extends Fragment {
             }
         });
 
-        NavigationDrawerItem[] navigationDrawerItems = new NavigationDrawerItem[]{
-                new NavigationDrawerItem(R.drawable.nav_drawer_icon_1, getString(R.string.title_section1)),
+        NavigationDrawerItem[] navigationDrawerItems = null;
+
+        if(LoginManager.checkInstagramLoginStatus(getActivity().getApplicationContext())) {
+            navigationDrawerItems = new NavigationDrawerItem[]{
+                    new NavigationDrawerItem(R.drawable.nav_drawer_icon_1, getString(R.string.title_section1)),
 //                new NavigationDrawerItem(0, "Divider"),
-                new NavigationDrawerItem(R.drawable.nav_drawer_icon_2, getString(R.string.title_section2)),
+                    new NavigationDrawerItem(R.drawable.nav_drawer_icon_2, getString(R.string.title_section2)),
 //                new NavigationDrawerItem(R.drawable.nav_drawer_icon_3, getString(R.string.title_section3)),
 //                new NavigationDrawerItem(R.drawable.ic_logo_48, getString(R.string.title_section4)),
 //                new NavigationDrawerItem(R.drawable.nav_drawer_icon_5, getString(R.string.title_section5)),
-                new NavigationDrawerItem(0, "Divider"),
-                new NavigationDrawerItem(R.drawable.nav_drawer_icon_6, getString(R.string.title_section6))
+                    new NavigationDrawerItem(0, "Divider"),
+                    new NavigationDrawerItem(R.drawable.nav_drawer_icon_6, getString(R.string.title_section6))
 //                new NavigationDrawerItem(R.drawable.nav_drawer_icon_7, getString(R.string.title_section7))
-        };
+            };
+        } else {
+            navigationDrawerItems = new NavigationDrawerItem[]{
+                    new NavigationDrawerItem(R.drawable.nav_drawer_icon_1, getString(R.string.title_section1)),
+//                new NavigationDrawerItem(0, "Divider"),
+                    new NavigationDrawerItem(R.drawable.nav_drawer_icon_2, getString(R.string.title_section2)),
+//                new NavigationDrawerItem(R.drawable.nav_drawer_icon_3, getString(R.string.title_section3)),
+//                new NavigationDrawerItem(R.drawable.ic_logo_48, getString(R.string.title_section4)),
+//                new NavigationDrawerItem(R.drawable.nav_drawer_icon_5, getString(R.string.title_section5)),
+                    new NavigationDrawerItem(0, "Divider"),
+                    new NavigationDrawerItem(R.drawable.nav_drawer_icon_6, getString(R.string.title_section6_2))
+//                new NavigationDrawerItem(R.drawable.nav_drawer_icon_7, getString(R.string.title_section7))
+            };
+        }
 
         mDrawerListView.setAdapter(new NavigationDrawerAdapter(
                 getActivity(),

@@ -1,5 +1,7 @@
 package org.csie.cheertour.cheertour.Recommend;
 
+import org.json.JSONArray;
+
 /**
  * Created by rose-pro on 2015/7/27.
  */
@@ -7,6 +9,7 @@ public class RecommendListItem {
     private String location_name;
     private String location_description;
     private String img_url;
+    private JSONArray img_urls;
     private String rank; // 打卡數
     private Boolean isFavorite;
 
@@ -31,10 +34,11 @@ public class RecommendListItem {
 
     private String category;
 
-    public RecommendListItem(String location_name,String location_description, String img_url, String rank, Boolean isFavorite, String category, long location_id){
+    public RecommendListItem(String location_name,String location_description, String img_url,JSONArray img_urls, String rank, Boolean isFavorite, String category, long location_id){
         this.location_name = location_name;
         this.location_description = location_description;
         this.img_url = img_url;
+        this.img_urls = img_urls;
         this.rank = rank;
         this.isFavorite = isFavorite;
         this.category = category;
@@ -60,7 +64,9 @@ public class RecommendListItem {
     public String getImg_url() {
         return img_url;
     }
-
+    public JSONArray getImg_urls(){
+        return img_urls;
+    }
     public void setImg_url(String img_url) {
         this.img_url = img_url;
     }
