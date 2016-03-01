@@ -77,8 +77,9 @@ public class NavigationDrawerAdapter extends ArrayAdapter<NavigationDrawerItem>{
     }
 
     @Override
-    public boolean isEnabled(int position) { // set Divider unable to click
-        if(position == 1 || position == 5){
+    public boolean isEnabled(int position) {
+        // set Divider unable to click
+        if(position == 2){
             return false;
         } else {
             return super.isEnabled(position);

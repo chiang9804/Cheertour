@@ -56,6 +56,7 @@ public class LoginActivity extends Activity implements GestureDetector.OnGesture
                 SharedPreferences pref = getSharedPreferences(PREFS_NAME, 0);
                 SharedPreferences.Editor edit = pref.edit();
                 edit.putBoolean("login", false);
+                edit.putBoolean("instagram_login", false);
                 edit.putBoolean("my_first_time", false);
                 edit.commit();
                 // back to main activity
@@ -152,6 +153,8 @@ public class LoginActivity extends Activity implements GestureDetector.OnGesture
         return true;
 
     }
+
+
 
     public void loginButtonPressed(View view){
         Log.d(TAG_LG, "login button pressed");

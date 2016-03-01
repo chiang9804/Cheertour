@@ -9,12 +9,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,6 +29,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.csie.cheertour.cheertour.ConstantVariables;
 import org.csie.cheertour.cheertour.R;
 
 import java.io.InputStream;
@@ -112,14 +115,14 @@ public class NavigationDrawerFragment extends Fragment {
 
         NavigationDrawerItem[] navigationDrawerItems = new NavigationDrawerItem[]{
                 new NavigationDrawerItem(R.drawable.nav_drawer_icon_1, getString(R.string.title_section1)),
-                new NavigationDrawerItem(0, "Divider"),
+//                new NavigationDrawerItem(0, "Divider"),
                 new NavigationDrawerItem(R.drawable.nav_drawer_icon_2, getString(R.string.title_section2)),
-                new NavigationDrawerItem(R.drawable.nav_drawer_icon_3, getString(R.string.title_section3)),
+//                new NavigationDrawerItem(R.drawable.nav_drawer_icon_3, getString(R.string.title_section3)),
 //                new NavigationDrawerItem(R.drawable.ic_logo_48, getString(R.string.title_section4)),
-                new NavigationDrawerItem(R.drawable.nav_drawer_icon_5, getString(R.string.title_section5)),
+//                new NavigationDrawerItem(R.drawable.nav_drawer_icon_5, getString(R.string.title_section5)),
                 new NavigationDrawerItem(0, "Divider"),
-                new NavigationDrawerItem(R.drawable.nav_drawer_icon_6, getString(R.string.title_section6)),
-                new NavigationDrawerItem(R.drawable.nav_drawer_icon_7, getString(R.string.title_section7))
+                new NavigationDrawerItem(R.drawable.nav_drawer_icon_6, getString(R.string.title_section6))
+//                new NavigationDrawerItem(R.drawable.nav_drawer_icon_7, getString(R.string.title_section7))
         };
 
         mDrawerListView.setAdapter(new NavigationDrawerAdapter(
@@ -136,6 +139,12 @@ public class NavigationDrawerFragment extends Fragment {
         ((TextView) mLinearLayout.findViewById(R.id.ND_fullname)).setText(fullname);
         ((TextView) mLinearLayout.findViewById(R.id.ND_username)).setText(username);
         new LoadImage(((ImageView) mLinearLayout.findViewById(R.id.ND_imageView))).execute(urlProfilePic);
+    }
+
+    public void setUserData(){
+        ((TextView) mLinearLayout.findViewById(R.id.ND_fullname)).setText("");
+        ((TextView) mLinearLayout.findViewById(R.id.ND_username)).setText("");
+        ((ImageView) mLinearLayout.findViewById(R.id.ND_imageView)).setImageDrawable(ContextCompat.getDrawable(getActivity().getApplicationContext(), R.drawable.ic_cheertour));
     }
 
     public boolean isDrawerOpen() {
@@ -167,8 +176,9 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerToggle = new ActionBarDrawerToggle(getActivity(), mDrawerLayout,
                 (Toolbar) getActivity().findViewById(R.id.toolbar),
                 R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close){@Override
-                                                  public void onDrawerClosed(View drawerView) {
+                R.string.navigation_drawer_close){
+            @Override
+            public void onDrawerClosed(View drawerView) {
             super.onDrawerClosed(drawerView);
             if (!isAdded()) {
                 return;
@@ -218,6 +228,7 @@ public class NavigationDrawerFragment extends Fragment {
 
     private void selectItem(int position) {
         mCurrentSelectedPosition = position;
+        Log.d(ConstantVariables.TAG_ND, "Navigation Drawer: select item"+position);
         if (mDrawerListView != null) {
             mDrawerListView.setItemChecked(position, true);
         }
@@ -329,4 +340,6 @@ public class NavigationDrawerFragment extends Fragment {
             }
         }
     }
+
+
 }

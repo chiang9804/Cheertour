@@ -12,7 +12,9 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AutoCompleteTextView;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -20,19 +22,18 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 import org.csie.cheertour.cheertour.Drawer.NavigationDrawerFragment;
-import org.csie.cheertour.cheertour.Favorite.FavaoriteFragment;
 import org.csie.cheertour.cheertour.Favorite.FavoriteListItem;
 import org.csie.cheertour.cheertour.Login.LoginActivity;
 import org.csie.cheertour.cheertour.Login.LoginManager;
 import org.csie.cheertour.cheertour.Map.TravelMapFragment;
 import org.csie.cheertour.cheertour.Rank.RankListItem;
-import org.csie.cheertour.cheertour.Rank.RankMapFragment;
 import org.csie.cheertour.cheertour.Recommend.RecommendFragment;
 import org.csie.cheertour.cheertour.Recommend.RecommendListItem;
 import org.csie.cheertour.cheertour.Search.MyAutoCompleteAdapter;
 
 import java.util.ArrayList;
 
+import br.com.dina.oauth.instagram.InstagramApp;
 import br.com.dina.oauth.instagram.InstagramSession;
 
 import static org.csie.cheertour.cheertour.ConstantVariables.PREFS_NAME;
@@ -132,7 +133,7 @@ public class MainFragmentActivity extends AppCompatActivity
     }
 
     private void getFavoriteList(){
-
+        // TODO: later
     }
 
     private void updateFavoriteList(){
@@ -159,6 +160,7 @@ public class MainFragmentActivity extends AppCompatActivity
 
     String userID = null;
     private void loadUserData(){
+
         InstagramSession instagramSession = new InstagramSession(this);
         userID = instagramSession.getId();
         mNavigationDrawerFragment.setUserData(instagramSession.getName()
@@ -179,19 +181,32 @@ public class MainFragmentActivity extends AppCompatActivity
                 if (resultCode == RESULT_OK){ // user login
                     // TODO: handle user login
                     loadUserData();
+
                 }
                 break;
         }
     }
 
+//    private final int DRAWER_ITEM_RECOMMEND = 0;
+//    private final int DRAWER_ITEM_DIVIDER1 = 1;
+//    private final int DRAWER_ITEM_TRAVEL_MAP = 2;
+//    private final int DRAWER_ITEM_RANK_MAP = 3;
+//    private final int DRAWER_ITEM_FAVORITE = 4;
+//    private final int DRAWER_ITEM_DIVIDER2 = 5;
+//    private final int DRAWER_ITEM_SETTING = 6;
+//    private final int DRAWER_ITEM_ABOUT = 7;
+
+    // If change anything here, go to NavigationDrawerAdapter: isEnabled
+
     private final int DRAWER_ITEM_RECOMMEND = 0;
-    private final int DRAWER_ITEM_DIVIDER1 = 1;
-    private final int DRAWER_ITEM_TRAVEL_MAP = 2;
-    private final int DRAWER_ITEM_RANK_MAP = 3;
-    private final int DRAWER_ITEM_FAVORITE = 4;
-    private final int DRAWER_ITEM_DIVIDER2 = 5;
-    private final int DRAWER_ITEM_SETTING = 6;
-    private final int DRAWER_ITEM_ABOUT = 7;
+//    private final int DRAWER_ITEM_DIVIDER1 = 1;
+    private final int DRAWER_ITEM_TRAVEL_MAP = 1;
+//    private final int DRAWER_ITEM_RANK_MAP = 3;
+//    private final int DRAWER_ITEM_FAVORITE = 4;
+    private final int DRAWER_ITEM_DIVIDER2 =  2;
+    private final int DRAWER_ITEM_SETTING = 3;
+//    private final int DRAWER_ITEM_ABOUT = 7;
+
     private Fragment recommendFragment, travelMapFragment, rankMapFragment, favoriteFragment, settingFragment, aboutFragment;
     @Override
     public void onNavigationDrawerItemSelected(int position) {
@@ -217,34 +232,37 @@ public class MainFragmentActivity extends AppCompatActivity
                         .replace(R.id.container, travelMapFragment)
                         .commit();
                 break;
-            case DRAWER_ITEM_RANK_MAP:
-                if(rankMapFragment == null)
-                    rankMapFragment = new RankMapFragment();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, rankMapFragment)
-                        .commit();
-                break;
-            case DRAWER_ITEM_FAVORITE:
-                if(favoriteFragment == null)
-                    favoriteFragment = new FavaoriteFragment();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, favoriteFragment)
-                        .commit();
-                break;
+//            case DRAWER_ITEM_RANK_MAP:
+//                if(rankMapFragment == null)
+//                    rankMapFragment = new RankMapFragment();
+//                fragmentManager.beginTransaction()
+//                        .replace(R.id.container, rankMapFragment)
+//                        .commit();
+//                break;
+//            case DRAWER_ITEM_FAVORITE:
+//                if(favoriteFragment == null)
+//                    favoriteFragment = new FavaoriteFragment();
+//                fragmentManager.beginTransaction()
+//                        .replace(R.id.container, favoriteFragment)
+//                        .commit();
+//                break;
             case DRAWER_ITEM_SETTING:
                 if(settingFragment == null)
-                    settingFragment = new SettingFragment();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, settingFragment)
-                        .commit();
+//                    settingFragment = new SettingFragment();
+//                fragmentManager.beginTransaction()
+//                        .replace(R.id.container, settingFragment)
+//                        .commit();
+                    LoginManager.logout(getApplicationContext());
+                    // restore to default image
+                    mNavigationDrawerFragment.setUserData();
                 break;
-            case DRAWER_ITEM_ABOUT:
-                if(aboutFragment == null)
-                    aboutFragment = new AboutFragment();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, aboutFragment)
-                        .commit();
-                break;
+//            case DRAWER_ITEM_ABOUT:
+//                if(aboutFragment == null)
+//                    aboutFragment = new AboutFragment();
+//                fragmentManager.beginTransaction()
+//                        .replace(R.id.container, aboutFragment)
+//                        .commit();
+//                break;
             default:
                 break;
         }
@@ -259,18 +277,18 @@ public class MainFragmentActivity extends AppCompatActivity
             case DRAWER_ITEM_TRAVEL_MAP:
                 mTitle = getString(R.string.title_section2);
                 break;
-            case DRAWER_ITEM_RANK_MAP:
-                mTitle = getString(R.string.title_section3);
-                break;
-            case DRAWER_ITEM_FAVORITE:
-                mTitle = getString(R.string.title_section5);
-                break;
-            case DRAWER_ITEM_SETTING:
-                mTitle = getString(R.string.title_section6);
-                break;
-            case DRAWER_ITEM_ABOUT:
-                mTitle = getString(R.string.title_section7);
-                break;
+//            case DRAWER_ITEM_RANK_MAP:
+//                mTitle = getString(R.string.title_section3);
+//                break;
+//            case DRAWER_ITEM_FAVORITE:
+//                mTitle = getString(R.string.title_section5);
+//                break;
+//            case DRAWER_ITEM_SETTING:
+//                mTitle = getString(R.string.title_section6);
+//                break;
+//            case DRAWER_ITEM_ABOUT:
+//                mTitle = getString(R.string.title_section7);
+//                break;
             default:
                 break;
         }
@@ -305,7 +323,7 @@ public class MainFragmentActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        Log.d(TAG_MP, "option item select"+id);
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_search) {
 //            findViewById(R.id.action_search).setVisibility(View.INVISIBLE);
@@ -320,4 +338,41 @@ public class MainFragmentActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    public void UserIconPressed(View view) {
+
+        if (!LoginManager.checkInstagramLoginStatus(getApplicationContext())) {
+
+            InstagramApp.OAuthAuthenticationListener listener = new InstagramApp.OAuthAuthenticationListener() {
+
+                @Override
+                public void onSuccess() {
+                    Toast.makeText(getApplicationContext(), "登入成功，可以使用完整功能", Toast.LENGTH_SHORT).show();
+                    SharedPreferences pref = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+                    SharedPreferences.Editor edit = pref.edit();
+
+                    edit.putBoolean("login", true);
+                    edit.putBoolean("my_first_time", false);
+                    edit.putBoolean("instagram_login", true);
+                    edit.commit();
+
+//                Bundle conData = new Bundle();
+//                conData.putString("results", "login");
+//                Intent intent = new Intent();
+//                intent.putExtras(conData);
+//                setResult(RESULT_OK, intent);
+//                mActivity.finish();
+
+                    // TODO: reload the user information
+                    loadUserData();
+                }
+
+                @Override
+                public void onFail(String error) {
+                    Toast.makeText(getApplicationContext(), "登入失敗，請稍候再試", Toast.LENGTH_SHORT).show();
+                }
+            };
+
+            LoginManager.loginToInstagram(this, listener);
+        }
+    }
 }

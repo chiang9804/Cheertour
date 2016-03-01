@@ -3,12 +3,12 @@
 
     <string name="do_not_login"><u>OR DO NOT LOGIN</u></string>
 
-    <string name="title_section1">趣玩推薦</string>
+    <string name="title_section1">景點排行</string>
     <string name="title_section2">旅遊地圖</string>
     <string name="title_section3">排行地圖</string>
     <string name="title_section4">朋友地圖</string>
     <string name="title_section5">我的最愛</string>
-    <string name="title_section6">設定</string>
+    <string name="title_section6">登出 Cheertour</string>
     <string name="title_section7">關於趣玩</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>

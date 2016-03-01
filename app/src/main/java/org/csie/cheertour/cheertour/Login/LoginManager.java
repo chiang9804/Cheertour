@@ -9,6 +9,8 @@ import org.csie.cheertour.cheertour.ConstantVariables;
 import br.com.dina.oauth.instagram.InstagramApp;
 import br.com.dina.oauth.instagram.InstagramApp.OAuthAuthenticationListener;
 
+import static org.csie.cheertour.cheertour.ConstantVariables.PREFS_NAME;
+
 /**
  * Created by rose-pro on 15/12/15.
  */
@@ -22,7 +24,7 @@ public class LoginManager {
 
     public static boolean checkInstagramLoginStatus(Context context) {
         SharedPreferences pref = context.getSharedPreferences(ConstantVariables.PREFS_NAME, context.MODE_PRIVATE);
-        Log.d("Tag", "check instagram login:"+pref.getBoolean("instagram_login", true));
+        Log.d("Tag", "check instagram login:" + pref.getBoolean("instagram_login", true));
         if (pref.getBoolean("instagram_login", true)) {
             return true;
         }
@@ -36,4 +38,14 @@ public class LoginManager {
 
     }
 
+    public static void logout(Context context){
+        SharedPreferences pref = context.getSharedPreferences(PREFS_NAME, context.MODE_PRIVATE);
+        SharedPreferences.Editor edit = pref.edit();
+
+        edit.putBoolean("login", false);
+        edit.putBoolean("my_first_time", false);
+        edit.putBoolean("instagram_login", false);
+        edit.commit();
+
+    }
 }
