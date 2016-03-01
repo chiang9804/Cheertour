@@ -45,6 +45,23 @@ public class RecommendListItem {
         this.location_id = location_id;
     }
 
+    public RecommendListItem(String location_name,String location_description, String img_url,JSONArray img_urls, int rank, Boolean isFavorite, String category, long location_id){
+        this.location_name = location_name;
+        this.location_description = location_description;
+        this.img_url = img_url;
+        this.img_urls = img_urls;
+        if(rank < 10) {
+            this.rank = "  "+Integer.toString(rank);
+        } else if (rank < 100){
+            this.rank = " "+Integer.toString(rank);
+        } else {
+            this.rank = Integer.toString(rank);
+        }
+        this.isFavorite = isFavorite;
+        this.category = category;
+        this.location_id = location_id;
+    }
+
     public String getLocation_name() {
         return location_name;
     }

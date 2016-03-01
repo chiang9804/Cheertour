@@ -62,7 +62,7 @@ public class RecommendFragment extends Fragment{
                     printTimeDifferenceToLog(TAG_RD, "download data");
                     recommend_List = new ArrayList<>();
                     for (int i = 0; i < jsonArray.length(); ++i) {
-                        recommend_List.add(getRecommendListItemFromJSONObject(jsonArray.getJSONObject(i)));
+                        recommend_List.add(getRecommendListItemFromJSONObject(jsonArray.getJSONObject(i), i+1));
                     }
                     Log.d(TAG_RD, "recommend list parse finish, len:"+recommend_List.size());
                     ((MainFragmentActivity) getActivity()).recommendList = recommend_List;
@@ -131,7 +131,7 @@ public class RecommendFragment extends Fragment{
         return map;
     }
 
-    private RecommendListItem getRecommendListItemFromJSONObject(JSONObject json) throws JSONException{
+    private RecommendListItem getRecommendListItemFromJSONObject(JSONObject json, int rank) throws JSONException{
         JSONArray imgArray = json.getJSONArray("image_url");
         String url = imgArray.getString(0);
         imgArray.remove(0);
@@ -141,7 +141,8 @@ public class RecommendFragment extends Fragment{
                 url,
                 imgArray,
                 // TODO change ranking calculation
-                json.getString("number_of_img"),
+                rank,
+//                json.getString("number_of_img"),
                 false,
                 json.getString("category"),
                 json.getLong("location_id")

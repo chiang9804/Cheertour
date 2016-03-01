@@ -21,12 +21,12 @@ Press the blank space of the navigation drawer
 
 **** TODO
 Search result
-Check login status before press favorite
-rank list cardview
-recommendation list length
+rank list first cardview margin
 locationInfo read bundle "name", display before download
+
+
+**** TODO for backend
 recommend list image resolution
-
-
+recommendation list length
 
 

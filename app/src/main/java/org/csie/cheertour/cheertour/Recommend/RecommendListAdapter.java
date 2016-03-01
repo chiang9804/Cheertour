@@ -24,10 +24,7 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 
 import org.csie.cheertour.cheertour.Location.LocationInfoAcvtivity;
 import org.csie.cheertour.cheertour.R;
-import org.json.JSONArray;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
@@ -169,9 +166,9 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
 
                 holder.locationName1 = (TextView) convertView.findViewById(R.id.textView);
                 holder.locationDescription1 = (TextView) convertView.findViewById(R.id.textView2);
-                holder.rank1 = (TextView) convertView.findViewById(R.id.textView3);
-                holder.like1 = (ImageButton) convertView.findViewById(R.id.imageButton2);
-                holder.share1 = (ImageButton) convertView.findViewById(R.id.imageButton);
+                holder.rank1 = (TextView) convertView.findViewById(R.id.rank);
+//                holder.like1 = (ImageButton) convertView.findViewById(R.id.imageButton2);
+//                holder.share1 = (ImageButton) convertView.findViewById(R.id.imageButton);
                 holder.cardView1 = (CardView) convertView.findViewById(R.id.card_view);
                 convertView.setTag(holder);
 
@@ -193,13 +190,13 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
             ImageLoader.getInstance().displayImage(item.getImg_url(), holder.imageView1, options, exceptionListener);
 
             holder.locationName1.setText(item.getLocation_name());
-            holder.locationDescription1.setText(item.getLocation_description());
+//            holder.locationDescription1.setText(item.getLocation_description());
             holder.rank1.setText(item.getRank());
-            if(item.getIsFavorite()){
-                holder.like1.setBackgroundResource(R.drawable.card_favorite_done);
-            } else {
-                holder.like1.setBackgroundResource(R.drawable.card_favorite);
-            }
+//            if(item.getIsFavorite()){
+//                holder.like1.setBackgroundResource(R.drawable.card_favorite_done);
+//            } else {
+//                holder.like1.setBackgroundResource(R.drawable.card_favorite);
+//            }
             holder.locationId1 = item.getLocation_id();
 
             holder.cardView1.setOnClickListener(new View.OnClickListener() {
@@ -228,18 +225,18 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
                 holder = new ViewHolder();
                 holder.imageView1 = (ImageView) convertView.findViewById(R.id.image);
                 holder.locationName1 = (TextView) convertView.findViewById(R.id.textView);
-                holder.locationDescription1 = (TextView) convertView.findViewById(R.id.textView2);
-                holder.rank1 = (TextView) convertView.findViewById(R.id.textView3);
-                holder.like1 = (ImageButton) convertView.findViewById(R.id.imageButton2);
-                holder.share1 = (ImageButton) convertView.findViewById(R.id.imageButton);
+//                holder.locationDescription1 = (TextView) convertView.findViewById(R.id.textView2);
+                holder.rank1 = (TextView) convertView.findViewById(R.id.rank);
+//                holder.like1 = (ImageButton) convertView.findViewById(R.id.imageButton2);
+//                holder.share1 = (ImageButton) convertView.findViewById(R.id.imageButton);
                 holder.cardView1 = (CardView) convertView.findViewById(R.id.card_view);
 
                 holder.imageView2 = (ImageView) convertView.findViewById(R.id.imageView2);
                 holder.locationName2 = (TextView) convertView.findViewById(R.id.textView4);
-                holder.locationDescription2 = (TextView) convertView.findViewById(R.id.textView5);
-                holder.rank2 = (TextView) convertView.findViewById(R.id.textView6);
-                holder.like2 = (ImageButton) convertView.findViewById(R.id.imageButton4);
-                holder.share2 = (ImageButton) convertView.findViewById(R.id.imageButton3);
+//                holder.locationDescription2 = (TextView) convertView.findViewById(R.id.textView5);
+                holder.rank2 = (TextView) convertView.findViewById(R.id.rank2);
+//                holder.like2 = (ImageButton) convertView.findViewById(R.id.imageButton4);
+//                holder.share2 = (ImageButton) convertView.findViewById(R.id.imageButton3);
                 holder.cardView2 = (CardView) convertView.findViewById(R.id.card_view2);
 
                 convertView.setTag(holder);
@@ -265,13 +262,13 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
             ImageLoader.getInstance().displayImage(item.getImg_url(), holder.imageView1, options, exceptionListener);
 
             holder.locationName1.setText(item.getLocation_name());
-            holder.locationDescription1.setText(item.getLocation_description());
+//            holder.locationDescription1.setText(item.getLocation_description());
             holder.rank1.setText(item.getRank());
-            if(item.getIsFavorite()){
-                holder.like1.setBackgroundResource(R.drawable.card_favorite_done);
-            } else {
-                holder.like1.setBackgroundResource(R.drawable.card_favorite);
-            }
+//            if(item.getIsFavorite()){
+//                holder.like1.setBackgroundResource(R.drawable.card_favorite_done);
+//            } else {
+//                holder.like1.setBackgroundResource(R.drawable.card_favorite);
+//            }
             holder.locationId1 = item.getLocation_id();
 
             holder.cardView1.setOnClickListener(new View.OnClickListener() {
@@ -296,13 +293,13 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
             ImageLoader.getInstance().displayImage(item2.getImg_url(), holder.imageView2, options, exceptionListener2);
 
             holder.locationName2.setText(item2.getLocation_name());
-            holder.locationDescription2.setText(item2.getLocation_description());
+//            holder.locationDescription2.setText(item2.getLocation_description());
             holder.rank2.setText(item2.getRank());
-            if(item2.getIsFavorite()){
-                holder.like2.setBackgroundResource(R.drawable.card_favorite_done);
-            } else {
-                holder.like2.setBackgroundResource(R.drawable.card_favorite);
-            }
+//            if(item2.getIsFavorite()){
+//                holder.like2.setBackgroundResource(R.drawable.card_favorite_done);
+//            } else {
+//                holder.like2.setBackgroundResource(R.drawable.card_favorite);
+//            }
             holder.locationId2 = item2.getLocation_id();
 
             holder.cardView2.setOnClickListener(new View.OnClickListener() {
@@ -317,6 +314,11 @@ public class RecommendListAdapter extends ArrayAdapter<RecommendListItem>  {
                 }
             });
 
+
+//            if(position > 4) {
+//                holder.rank1.setVisibility(View.INVISIBLE);
+//                holder.rank2.setVisibility(View.INVISIBLE);
+//            }
         }
 
         Log.d(TAG_RD, "convertView: "+convertView.getResources());

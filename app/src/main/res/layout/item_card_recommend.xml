@@ -20,14 +20,14 @@
         <LinearLayout android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:weightSum="6"
             android:padding="0dp">
+            <!--android:weightSum="6"-->
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/relativeLayout"
-                android:layout_weight="1">
+                android:id="@+id/relativeLayout" >
+                <!--android:layout_weight="1">-->
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -43,75 +43,95 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text=" 01"
+                    android:id="@+id/rank"
+                    android:background="@drawable/rank_new"
+                    android:textStyle="bold"
+                    android:typeface="monospace"
+                    android:paddingLeft="0dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center_vertical" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="趣玩推薦地點"
+                    android:shadowColor="#000000"
+                    android:shadowRadius="2"
                     android:id="@+id/textView"
                     android:layout_alignBottom="@+id/image"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:paddingLeft="5dp"
-                    android:paddingBottom="5dp" />
+                    android:paddingBottom="5dp"
+                    android:singleLine="false"
+                    android:maxLines="2" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="趣玩地點描述"
-                    android:id="@+id/textView2"
-                    android:layout_above="@+id/textView"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:paddingLeft="5dp" />
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+                    <!--android:text="趣玩地點描述"-->
+                    <!--android:id="@+id/textView2"-->
+                    <!--android:layout_above="@+id/textView"-->
+                    <!--android:layout_alignParentLeft="true"-->
+                    <!--android:layout_alignParentStart="true"-->
+                    <!--android:paddingLeft="5dp" />-->
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/relativeLayout2"
-                android:layout_weight="5"
-                android:background="@color/light_primary">
+            <!--<RelativeLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/relativeLayout2"-->
+                <!--android:layout_weight="5"-->
+                <!--android:background="@color/light_primary">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/primary_text"
-                    android:text="打卡數"
-                    android:id="@+id/textView3"
-                    android:layout_alignParentStart="true"
-                    android:padding="10dp"
-                    android:layout_alignParentBottom="false"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="false"
-                    android:layout_centerVertical="true" />
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                    <!--android:textColor="@color/primary_text"-->
+                    <!--android:text="打卡數"-->
+                    <!--android:id="@+id/textView3"-->
+                    <!--android:layout_alignParentStart="true"-->
+                    <!--android:padding="10dp"-->
+                    <!--android:layout_alignParentBottom="false"-->
+                    <!--android:layout_alignParentLeft="true"-->
+                    <!--android:layout_alignParentTop="false"-->
+                    <!--android:layout_centerVertical="true" />-->
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageButton"
-                    android:clickable="false"
-                    android:background="@drawable/card_share"
-                    android:scaleType="centerInside"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:padding="5dp"
-                    android:layout_marginRight="10dp" />
+                <!--&lt;!&ndash;<ImageButton&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:id="@+id/imageButton"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:clickable="false"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:background="@drawable/card_share"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:scaleType="centerInside"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_centerVertical="true"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_alignParentRight="true"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_alignParentEnd="true"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:padding="5dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginRight="10dp" />&ndash;&gt;-->
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageButton2"
-                    android:background="@drawable/card_favorite"
-                    android:cropToPadding="false"
-                    android:baselineAlignBottom="false"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerInside"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/imageButton"
-                    android:layout_toStartOf="@+id/imageButton"
-                    android:layout_marginRight="10dp" />
-            </RelativeLayout>
+                <!--&lt;!&ndash;<ImageButton&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:id="@+id/imageButton2"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:background="@drawable/card_favorite"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:cropToPadding="false"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:baselineAlignBottom="false"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:adjustViewBounds="true"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:scaleType="centerInside"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_centerVertical="true"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_toLeftOf="@+id/imageButton"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_toStartOf="@+id/imageButton"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginRight="10dp" />&ndash;&gt;-->
+            <!--</RelativeLayout>-->
 
 
         </LinearLayout>
@@ -132,14 +152,14 @@
         <LinearLayout android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:weightSum="6"
             android:padding="0dp">
+            <!--android:weightSum="6"-->
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/relativeLayout3"
-                android:layout_weight="1">
+                android:id="@+id/relativeLayout3" >
+                <!--android:layout_weight="1">-->
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -155,75 +175,94 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text=" 01"
+                    android:id="@+id/rank2"
+                    android:background="@drawable/rank_new"
+                    android:textStyle="bold"
+                    android:typeface="monospace"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="0dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="30dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="趣玩推薦地點"
                     android:id="@+id/textView4"
+                    android:shadowColor="#000000"
+                    android:shadowRadius="2"
                     android:layout_alignBottom="@+id/imageView2"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:paddingLeft="5dp"
-                    android:paddingBottom="5dp" />
+                    android:paddingBottom="5dp"
+                    android:maxLines="2" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="趣玩地點描述"
-                    android:id="@+id/textView5"
-                    android:layout_above="@+id/textView4"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:paddingLeft="5dp" />
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+                    <!--android:text="趣玩地點描述"-->
+                    <!--android:id="@+id/textView5"-->
+                    <!--android:layout_above="@+id/textView4"-->
+                    <!--android:layout_alignParentLeft="true"-->
+                    <!--android:layout_alignParentStart="true"-->
+                    <!--android:paddingLeft="5dp" />-->
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/relativeLayout4"
-                android:layout_weight="5"
-                android:background="@color/light_primary">
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/relativeLayout4"-->
+                <!--android:layout_weight="5"-->
+                <!--android:background="@color/light_primary">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/primary_text"
-                    android:text="打卡數"
-                    android:id="@+id/textView6"
-                    android:layout_alignParentStart="true"
-                    android:padding="10dp"
-                    android:layout_alignParentBottom="false"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="false"
-                    android:layout_centerVertical="true" />
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                    <!--android:textColor="@color/primary_text"-->
+                    <!--android:text="打卡數"-->
+                    <!--android:id="@+id/textView6"-->
+                    <!--android:layout_alignParentStart="true"-->
+                    <!--android:padding="10dp"-->
+                    <!--android:layout_alignParentBottom="false"-->
+                    <!--android:layout_alignParentLeft="true"-->
+                    <!--android:layout_alignParentTop="false"-->
+                    <!--android:layout_centerVertical="true" />-->
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageButton3"
-                    android:clickable="false"
-                    android:background="@drawable/card_share"
-                    android:scaleType="centerInside"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:padding="5dp"
-                    android:layout_marginRight="10dp" />
+                <!--&lt;!&ndash;<ImageButton&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:id="@+id/imageButton3"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:clickable="false"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:background="@drawable/card_share"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:scaleType="centerInside"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_centerVertical="true"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_alignParentRight="true"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_alignParentEnd="true"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:padding="5dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginRight="10dp" />&ndash;&gt;-->
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageButton4"
-                    android:background="@drawable/card_favorite"
-                    android:cropToPadding="false"
-                    android:baselineAlignBottom="false"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerInside"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/imageButton3"
-                    android:layout_toStartOf="@+id/imageButton3"
-                    android:layout_marginRight="10dp" />
-            </RelativeLayout>
+                <!--&lt;!&ndash;<ImageButton&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:id="@+id/imageButton4"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:background="@drawable/card_favorite"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:cropToPadding="false"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:baselineAlignBottom="false"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:adjustViewBounds="true"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:scaleType="centerInside"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_centerVertical="true"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_toLeftOf="@+id/imageButton3"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_toStartOf="@+id/imageButton3"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginRight="10dp" />&ndash;&gt;-->
+            <!--</RelativeLayout>-->
 
 
         </LinearLayout>
